@@ -312,20 +312,38 @@ export function UserNavbar() {
           >
             <Bars2Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
           </IconButton>
-          {!logged && (
-            <Link to="/login">
-              <Button
-                size="sm"
-                variant="text"
-                className="dark:bg-blue-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-blue-700"
-              >
-                <span>Log In</span>
-              </Button>
-            </Link>
-          )}
+
           <button onClick={toggleMode}>
             {mode === "light" ? <FaMoon /> : <MdOutlineWbSunny />}
           </button>
+
+          {!logged && (
+            <>
+              <Link to="/signup">
+                <Button
+                  size="sm"
+                  variant="text"
+                  className={`transition duration-300 ease-in-out rounded-md px-4 py-2 
+      bg-blue-500 text-white hover:bg-blue-600 
+      dark:bg-[#2563EB] dark:text-white dark:hover:bg-[#1D4ED8]`}
+                >
+                  <span>Sign Up</span>
+                </Button>
+              </Link>
+              <Link to="/login">
+                <Button
+                  size="sm"
+                  variant="text"
+                  className={`transition duration-300 ease-in-out rounded-md px-4 py-2 
+      bg-gray-100 text-blue-500 hover:bg-gray-200 hover:text-blue-600
+      dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white`}
+                >
+                  <span>Log In</span>
+                </Button>
+              </Link>
+            </>
+          )}
+
           {logged && <ProfileMenu />}
         </section>
       </div>
