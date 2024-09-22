@@ -313,7 +313,7 @@ export function UserNavbar() {
             <Bars2Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
           </IconButton>
           {!logged && (
-            <Link to="http://localhost:5174/login">
+            <Link to="/login">
               <Button
                 size="sm"
                 variant="text"
