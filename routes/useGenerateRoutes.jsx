@@ -1,6 +1,8 @@
 import { Outlet, useRoutes } from "react-router-dom";
 import UserLayout from "../src/layouts/UserLayout";
 import AdminLayout from "../src/layouts/AdminLayout";
+import { Login } from "../src/components/Login";
+import { Signup } from "../src/components/Signup";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -11,7 +13,16 @@ const useGenerateRoutes = () => {
           <Outlet />
         </UserLayout>
       ),
-      children: [],
+      children: [
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "signup",
+          element: <Signup />,
+        },
+      ],
     },
     {
       path: "admin",

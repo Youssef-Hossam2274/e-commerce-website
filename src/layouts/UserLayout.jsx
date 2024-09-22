@@ -6,7 +6,7 @@ const UserLayout = ({ children }) => {
   return (
     <main className="flex flex-col min-h-screen">
       <UserNavbar />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow py-20">{children}</div>
       <Footer />
     </main>
   );
