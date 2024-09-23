@@ -6,7 +6,6 @@ const initialState = {
   logged: false,
   id: null,
   currentUser: null,
-  status: null, // {pending, success}
 };
 const USERS_ULR = "http://localhost:3000/users";
 
@@ -46,7 +45,11 @@ export const usersSlice = createSlice({
         state.users = action.payload;
       })
       .addCase(addUser.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.users.push(action.payload);
+        state.userId = action.payload.id;
+        state.currentUser = action.payload;
+        localStorage.setItem("id", action.payload.id);
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         const userData = action.payload;
@@ -54,10 +57,6 @@ export const usersSlice = createSlice({
         state.logged = true;
         state.id = id;
         state.currentUser = userData;
-        state.status = "success";
-      })
-      .addCase(fetchUser.pending, (state, action) => {
-        state.status = "pending";
       });
   },
 });

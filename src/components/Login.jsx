@@ -1,20 +1,71 @@
-import { useState } from "react";
-import { Typography, Input, Button } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { Typography, Input, Button, useSelect } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/reducers/usersSlice";
+import RegistrationErrorMsg from "./RegistrationErrorMsg";
 
 export function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
+  const [inputData, setInputData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorMsg, setErrorMsg] = useState({
+    email: "",
+    password: "",
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const allUsers = useSelector((state) => state.users.users);
+
+  const validation = () => {
+    setErrorMsg({ password: "", email: "" });
+
+    const userTryToLogin = allUsers.find(
+      (user) => user.email === inputData.email
+    );
+    if (!userTryToLogin) {
+      setErrorMsg((prevError) => {
+        return {
+          ...prevError,
+          email: "this account is not exist. try to Sign Up.",
+        };
+      });
+    }
+
+    if (userTryToLogin && userTryToLogin.password !== inputData.password) {
+      setErrorMsg((prevError) => {
+        return {
+          ...prevError,
+          password: "This wrong password",
+        };
+      });
+    }
+  };
+  useEffect(() => {
+    validation();
+  }, [inputData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchUser(1));
-    localStorage.setItem("id", 1);
+    const userTryToLogin = allUsers.find(
+      (user) => user.email === inputData.email
+    );
+    const { id } = userTryToLogin;
+    dispatch(fetchUser(id));
+    localStorage.setItem("id", id);
     navigate("/");
+  };
+
+  const disableBtn = () => {
+    if (!inputData.email || !inputData.password) return true;
+
+    if (errorMsg.email || errorMsg.password) return true;
+
+    return false;
   };
   return (
     <section className="grid text-center items-center dark:text-gray-100">
@@ -45,6 +96,7 @@ export function Login() {
               </Typography>
             </label>
             <Input
+              error={Boolean(inputData.email && errorMsg.email)}
               id="email"
               color="gray"
               size="lg"
@@ -55,8 +107,15 @@ export function Login() {
               labelProps={{
                 className: "hidden",
               }}
+              onChange={(e) =>
+                setInputData({ ...inputData, email: e.target.value })
+              }
             />
+            {inputData.email && errorMsg.email && (
+              <RegistrationErrorMsg msg={errorMsg.email} />
+            )}
           </div>
+
           <div className="mb-6">
             <label htmlFor="password">
               <Typography
@@ -67,6 +126,7 @@ export function Login() {
               </Typography>
             </label>
             <Input
+              error={Boolean(inputData.password && errorMsg.password)}
               size="lg"
               placeholder="********"
               labelProps={{
@@ -83,8 +143,15 @@ export function Login() {
                   )}
                 </i>
               }
+              onChange={(e) =>
+                setInputData({ ...inputData, password: e.target.value })
+              }
             />
+            {inputData.password && errorMsg.password && (
+              <RegistrationErrorMsg msg={errorMsg.password} />
+            )}
           </div>
+
           <div className="flex justify-end">
             <Typography
               as="a"
@@ -96,7 +163,9 @@ export function Login() {
               Forgot password
             </Typography>
           </div>
+
           <Button
+            disabled={disableBtn()}
             type="submit"
             color="gray"
             size="lg"
