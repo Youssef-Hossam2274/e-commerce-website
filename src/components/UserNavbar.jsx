@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  MobileNav,
   Typography,
   Button,
   Menu,
@@ -8,29 +7,24 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Card,
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
 import {
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
-  ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/solid";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
-import { PiNuclearPlantLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/usersSlice";
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoIosHome } from "react-icons/io";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -126,135 +120,38 @@ function ProfileMenu() {
   );
 }
 
-// nav list menu
-const navListMenuItems = [
-  {
-    title: "@material-tailwind/html",
-    description:
-      "Learn how to use @material-tailwind/html, packed with rich components and widgets.",
-  },
-  {
-    title: "@material-tailwind/react",
-    description:
-      "Learn how to use @material-tailwind/react, packed with rich components for React.",
-  },
-  {
-    title: "Material Tailwind PRO",
-    description:
-      "A complete set of UI Elements for building faster websites in less time.",
-  },
-];
-
-function NavListMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const renderItems = navListMenuItems.map(({ title, description }) => (
-    <a href="#" key={title}>
-      <MenuItem className="dark:hover:bg-gray-700">
-        <Typography
-          variant="h6"
-          color="blue-gray"
-          className="mb-1 dark:text-gray-200"
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="small"
-          color="gray"
-          className="font-normal dark:text-gray-400"
-        >
-          {description}
-        </Typography>
-      </MenuItem>
-    </a>
-  ));
-
-  return (
-    <React.Fragment>
-      <Menu allowHover open={isMenuOpen} handler={setIsMenuOpen}>
-        <MenuHandler>
-          <Typography
-            as="a"
-            href="#"
-            variant="small"
-            className="font-normal dark:text-gray-200"
-          >
-            <MenuItem className="hidden items-center gap-2 font-medium text-blue-gray-900 dark:text-gray-200 lg:flex lg:rounded-full">
-              <Square3Stack3DIcon className="h-[18px] w-[18px] text-blue-gray-500 dark:text-gray-400" />{" "}
-              Pages{" "}
-              <ChevronDownIcon
-                strokeWidth={2}
-                className={`h-3 w-3 transition-transform ${
-                  isMenuOpen ? "rotate-180" : ""
-                } dark:text-gray-400`}
-              />
-            </MenuItem>
-          </Typography>
-        </MenuHandler>
-        <MenuList className="hidden w-[36rem] grid-cols-7 gap-3 overflow-visible lg:grid dark:bg-gray-800">
-          <Card
-            color="blue"
-            shadow={false}
-            variant="gradient"
-            className="col-span-3 grid h-full w-full place-items-center rounded-md"
-          >
-            <RocketLaunchIcon
-              strokeWidth={1}
-              className="h-28 w-28 dark:text-gray-200"
-            />
-          </Card>
-          <ul className="col-span-4 flex w-full flex-col gap-1">
-            {renderItems}
-          </ul>
-        </MenuList>
-      </Menu>
-      <MenuItem className="flex items-center gap-2 font-medium text-blue-gray-900 dark:text-gray-200 lg:hidden">
-        <Square3Stack3DIcon className="h-[18px] w-[18px] text-blue-gray-500 dark:text-gray-400" />{" "}
-        Pages{" "}
-      </MenuItem>
-      <ul className="ml-6 flex w-full flex-col gap-1 lg:hidden">
-        {renderItems}
-      </ul>
-    </React.Fragment>
-  );
-}
-
 // nav list component
 const navListItems = [
   {
-    label: "Account",
-    icon: UserCircleIcon,
+    label: "Home",
+    icon: IoIosHome,
+    to: "/",
   },
   {
-    label: "Blocks",
-    icon: CubeTransparentIcon,
-  },
-  {
-    label: "Docs",
-    icon: CodeBracketSquareIcon,
+    label: "Shop",
+    icon: FaShoppingCart,
+    to: "shop",
   },
 ];
 
 function NavList() {
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-      <NavListMenu />
-      {navListItems.map(({ label, icon }, key) => (
-        <Typography
-          key={label}
-          as="a"
-          href="#"
-          variant="small"
-          color="gray"
-          className="font-medium text-blue-gray-500 dark:text-gray-400"
-        >
-          <MenuItem className="flex items-center gap-2 lg:rounded-full dark:hover:bg-gray-700">
-            {React.createElement(icon, {
-              className: "h-[18px] w-[18px] dark:text-gray-400",
-            })}{" "}
-            <span className="text-gray-900 dark:text-gray-200"> {label}</span>
-          </MenuItem>
-        </Typography>
+      {navListItems.map(({ label, icon, to }) => (
+        <Link to={to} key={label}>
+          <Typography
+            variant="small"
+            color="gray"
+            className="font-medium text-blue-gray-500 dark:text-gray-400"
+          >
+            <MenuItem className="flex items-center gap-2 lg:rounded-full dark:hover:bg-gray-700">
+              {React.createElement(icon, {
+                className: "h-[18px] w-[18px] dark:text-gray-400",
+              })}{" "}
+              <span className="text-gray-900 dark:text-gray-200"> {label}</span>
+            </MenuItem>
+          </Typography>
+        </Link>
       ))}
     </ul>
   );
@@ -289,13 +186,12 @@ export function UserNavbar() {
     <nav className="p-2 lg:pl-6 dark:bg-gray-800">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900 dark:text-gray-200">
         <section className="flex">
-          <Typography
-            as="a"
-            href="#"
+          <Link
+            to="/"
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium text-gray-800 dark:text-gray-200"
           >
-            Material Tailwind
-          </Typography>
+            Male fashion
+          </Link>
 
           <div className="hidden lg:block">
             <NavList />

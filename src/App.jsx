@@ -9,7 +9,6 @@ function App() {
   const routes = useGenerateRoutes();
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.users);
-  console.log(status);
   useEffect(() => {
     const userId = localStorage.getItem("id");
     if (userId) dispatch(fetchUser(userId));

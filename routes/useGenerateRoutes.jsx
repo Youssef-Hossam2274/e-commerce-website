@@ -3,6 +3,7 @@ import UserLayout from "../src/layouts/UserLayout";
 import AdminLayout from "../src/layouts/AdminLayout";
 import { Login } from "../src/components/Login";
 import { Signup } from "../src/components/Signup";
+import ProductsPage from "../src/pages/ProductsPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -21,6 +22,10 @@ const useGenerateRoutes = () => {
         {
           path: "signup",
           element: <Signup />,
+        },
+        {
+          path: "shop",
+          element: <ProductsPage />,
         },
       ],
     },
