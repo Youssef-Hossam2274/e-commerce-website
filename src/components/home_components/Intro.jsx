@@ -3,7 +3,7 @@ import React from "react";
 
 const Intro = () => {
   return (
-    <div className="bg-intro-bg h-[100vh] bg-cover w-full">
+    <div className="bg-intro-bg bg-[#f3f2ee] dark:bg-[#242424] h-[100vh] bg-cover bg-center w-full">
       <div className="flex flex-col lg:w-1/3 p-16 justify-center h-full items-start text-left gap-8 border-black">
         <h6 className="text-sm text-red-600 font-bold">SUMMER COLLECTION</h6>
         <div className="text-4xl flex flex-col">

@@ -6,7 +6,7 @@ const Services = () => {
     <div className="lg:relative w-full lg:h-[150vh] pb-10  bg-mainWhite ">
       <div className="lg:static lg:h-[150vh] lg:p-0 p-3 flex flex-col gap-4 items-center">
         <div className="lg:absolute lg:top-[50vh] lg:left-[20vh] lg:z-10">
-          <img src="./src/img/hero2/banner-2.jpg" alt="" />
+          <img src="./src/img/hero2/banner-2.png" alt="" />
         </div>
         <div className="lg:absolute lg:left-[20vh] lg:top-[120vh] lg:z-20">
           <div className="flex flex-col w-fit items-start ">
@@ -19,7 +19,7 @@ const Services = () => {
           </div>
         </div>
         <div className="lg:absolute lg:right-[20vh] lg:top-[10vh] lg:z-10">
-          <img src="./src/img/hero2/banner-1.jpg" alt="" />
+          <img src="./src/img/hero2/banner-1.png" alt="" />
         </div>
         <div className="lg:absolute lg:left-[80vh] lg:top-[25vh] lg:z-20">
           <div className="flex flex-col w-fit items-start ">
@@ -35,7 +35,7 @@ const Services = () => {
           </div>
         </div>
         <div className="lg:absolute lg:right-[18vh] lg:top-[80vh] lg:z-10">
-          <img src="./src/img/hero2/banner-3.jpg" alt="" />
+          <img src="./src/img/hero2/banner-3.png" alt="" />
         </div>
         <div className="lg:absolute lg:left-[95vh] lg:top-[90vh] lg:z-20">
           <div className="flex flex-col w-fit items-start ">
