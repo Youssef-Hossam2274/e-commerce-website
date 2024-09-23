@@ -7,7 +7,6 @@ import { ProductSkeleton } from "../components/ProductSkeleton";
 export default function ProductsPage() {
   const dispatch = useDispatch();
   const { status, products } = useSelector((state) => state.products);
-  console.log(status);
   useEffect(() => {
     if (status === "idle") dispatch(fetchProducts());
   }, [status]);
