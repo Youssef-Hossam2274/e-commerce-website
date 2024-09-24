@@ -194,7 +194,11 @@ export function UserNavbar() {
             to="/"
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium text-gray-800 dark:text-gray-200"
           >
-            <img src="../src/img/mainAssets/logo.png" />
+            {mode === "light" ? (
+              <img src="../src/img/mainAssets/logo.png" />
+            ) : (
+              <img src="../src/img/mainAssets/footer-logo.png" />
+            )}
           </Link>
 
           <div className="hidden lg:block">
