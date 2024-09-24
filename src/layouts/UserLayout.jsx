@@ -1,6 +1,6 @@
 import React from "react";
-import { UserNavbar } from "../components/UserNavbar";
-import { Footer } from "../components/Footer";
+import { UserNavbar } from "../components/user_components/UserNavbar";
+import { Footer } from "../components/user_components/Footer";
 
 const UserLayout = ({ children }) => {
   return (

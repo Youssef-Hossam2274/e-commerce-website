@@ -21,7 +21,7 @@ import {
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/reducers/usersSlice";
+import { logout } from "../../../redux/reducers/usersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
