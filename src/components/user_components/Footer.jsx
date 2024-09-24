@@ -15,8 +15,6 @@ const LINKS = [
   },
 ];
 
-const currentYear = new Date().getFullYear();
-
 export function Footer() {
   return (
     <footer className="relative py-7 w-full bg-gray-800">

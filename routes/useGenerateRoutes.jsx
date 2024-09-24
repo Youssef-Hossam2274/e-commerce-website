@@ -37,7 +37,7 @@ const useGenerateRoutes = () => {
           element: <UserProfile />,
         },
         {
-          path: "",
+          index: true,
           element: <Home />,
         },
       ],
