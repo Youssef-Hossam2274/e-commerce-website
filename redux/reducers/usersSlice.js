@@ -20,6 +20,15 @@ export const fetchUser = createAsyncThunk("users/fetchUser", async (userId) => {
   return response.data;
 });
 
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (initialUser) => {
+    const { id } = initialUser;
+    const response = await axios.put(`${USERS_ULR}/${id}`, initialUser);
+    return response.data;
+  }
+);
+
 export const addUser = createAsyncThunk(
   "users/addUser",
   async (initialUser) => {
@@ -37,6 +46,7 @@ export const usersSlice = createSlice({
       state.id = null;
       state.logged = false;
       state.currentUser = null;
+      state.status = null;
       localStorage.removeItem("id");
     },
   },
@@ -58,6 +68,16 @@ export const usersSlice = createSlice({
       })
       .addCase(fetchUser.pending, (state, action) => {
         state.status = "pending";
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.currentUser = action.payload;
+        state.users = state.users.map((user) => {
+          if (user.id === action.payload.id) {
+            user = action.payload;
+          }
+          return user;
+        });
       });
   },
 });
