@@ -4,6 +4,9 @@ import AdminLayout from "../src/layouts/AdminLayout";
 import { Login } from "../src/components/Login";
 import { Signup } from "../src/components/Signup";
 import ProductsPage from "../src/pages/ProductsPage";
+import AdminUsersPage from "../src/pages/AdminUsersPage";
+import AdminProductsPage from "../src/pages/AdminProductsPage";
+import DashboardPage from "../src/pages/DashboardPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -36,7 +39,20 @@ const useGenerateRoutes = () => {
           <Outlet />
         </AdminLayout>
       ),
-      children: [],
+      children: [
+        {
+          index: true,
+          element: <DashboardPage />,
+        },
+        {
+          path: "users",
+          element: <AdminUsersPage />,
+        },
+        {
+          path: "products",
+          element: <AdminProductsPage />,
+        },
+      ],
     },
   ]);
 
