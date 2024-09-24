@@ -15,6 +15,14 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const addProduct = createAsyncThunk(
+  "products/addProduct",
+  async (initialProduct) => {
+    const response = await axios.post(PRODUCTS_ULR, initialProduct);
+    return response.data;
+  }
+);
+
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -27,6 +35,9 @@ export const productsSlice = createSlice({
       })
       .addCase(fetchProducts.pending, (state) => {
         state.status = "pending";
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        state.products.push(action.payload);
       });
   },
 });

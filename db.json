@@ -1,6 +1,13 @@
 {
   "users": [
     {
+      "id": "xzcfsda",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
       "id": 1,
       "name": "Youssef Hossam",
       "email": "y.hossam2274@gmail.com",
@@ -61,105 +68,6 @@
     },
     {
       "id": 3,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 4,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 5,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 6,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 7,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 8,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 9,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 10,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 11,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 12,
       "name": "Camera Full HD",
       "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
       "price": 200,
@@ -168,6 +76,28 @@
         "rate": 4.5,
         "count": 100
       }
+    },
+    {
+      "name": "New Air pods",
+      "description": "this an apple air pods",
+      "price": 90,
+      "imgUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1d",
+      "rating": {
+        "rate": 0,
+        "count": 0
+      },
+      "id": 4
+    },
+    {
+      "name": "new product",
+      "description": "this new product , this test product",
+      "price": "200",
+      "imgUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg",
+      "rating": {
+        "rate": "3",
+        "count": 0
+      },
+      "id": 5
     }
   ]
 }

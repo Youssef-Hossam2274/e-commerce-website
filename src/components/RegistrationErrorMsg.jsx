@@ -5,7 +5,7 @@ export default function RegistrationErrorMsg({ msg }) {
     <Typography
       variant="small"
       color="gray"
-      className="mt-2 flex  gap-1 font-normal"
+      className="mt-2 flex  gap-1 font-normal dark:text-white"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
