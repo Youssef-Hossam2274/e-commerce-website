@@ -12,12 +12,14 @@
       "name": "Youssef Hossam",
       "email": "y.hossam2274@gmail.com",
       "password": "1234",
+      "gender": "male",
       "role": "admin"
     },
     {
       "name": "Youssef",
       "email": "youssef.hosman22@gmail.com",
       "password": "Youssef@20@20",
+      "gender": "male",
       "role": "user",
       "id": 2
     },
@@ -25,6 +27,7 @@
       "name": "Youssef",
       "email": "youssef.hosman22@gmail.comm",
       "password": "Youssef@20@20",
+      "gender": "male",
       "role": "user",
       "id": 3
     },
@@ -32,6 +35,7 @@
       "name": "anas",
       "email": "anas@gmail.com",
       "password": "Anas@20@20",
+      "gender": "male",
       "role": "user",
       "id": 4
     },
@@ -39,6 +43,7 @@
       "name": "test",
       "email": "test@gmail.com",
       "password": "Test@20@20",
+      "gender": "male",
       "role": "user",
       "id": 5
     }

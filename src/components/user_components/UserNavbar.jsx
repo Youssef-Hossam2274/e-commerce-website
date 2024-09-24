@@ -21,13 +21,15 @@ import {
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/reducers/usersSlice";
-import { Link } from "react-router-dom";
+import { logout } from "../../../redux/reducers/usersSlice";
+import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const closeMenu = () => setIsMenuOpen(false);
   const dispatch = useDispatch();
@@ -43,7 +45,9 @@ function ProfileMenu() {
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
-      onclick: () => {},
+      onclick: () => {
+        navigate("/profile");
+      },
     },
     {
       label: "Inbox",
@@ -175,7 +179,7 @@ export function UserNavbar() {
     setMode(newMode);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setIsNavOpen(false)
@@ -184,13 +188,17 @@ export function UserNavbar() {
 
   return (
     <nav className="p-2 lg:pl-6 dark:bg-gray-800">
-      <div className="relative mx-auto flex items-center justify-between text-blue-gray-900 dark:text-gray-200">
+      <div className="relative mx-auto flex items-center justify-between text-blue-gray-900 dark:text-gray-200 py-3">
         <section className="flex">
           <Link
             to="/"
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium text-gray-800 dark:text-gray-200"
           >
-            Male fashion
+            {mode === "light" ? (
+              <img src="../src/img/mainAssets/logo.png" />
+            ) : (
+              <img src="../src/img/mainAssets/footer-logo.png" />
+            )}
           </Link>
 
           <div className="hidden lg:block">
@@ -243,7 +251,7 @@ export function UserNavbar() {
           {logged && <ProfileMenu />}
         </section>
       </div>
-      <Collapse open={isNavOpen} className="overflow-scroll">
+      <Collapse open={isNavOpen}>
         <NavList />
       </Collapse>
     </nav>
