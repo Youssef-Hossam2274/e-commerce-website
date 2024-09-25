@@ -36,7 +36,17 @@ const useGenerateRoutes = () => {
           <Outlet />
         </AdminLayout>
       ),
-      children: [],
+      children: [
+        {
+          path: "users",
+          element: <main>Users</main>
+
+        },
+        {
+          index: true,
+          element: <h1>INDEX</h1>
+        }
+      ],
     },
   ]);
 
