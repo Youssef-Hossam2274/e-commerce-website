@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/reducers/usersSlice";
 import RegistrationErrorMsg from "../components/RegistrationErrorMsg";
 
-export function Login() {
+export function LoginPage() {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
   const [inputData, setInputData] = useState({
@@ -68,7 +68,7 @@ export function Login() {
     return false;
   };
   return (
-    <section className="grid text-center items-center dark:text-gray-100">
+    <section className="grid text-center items-center dark:text-gray-100 py-32">
       <div>
         <Typography
           variant="h3"
@@ -194,4 +194,4 @@ export function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

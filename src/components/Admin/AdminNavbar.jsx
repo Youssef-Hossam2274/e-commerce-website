@@ -22,48 +22,41 @@ import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/reducers/usersSlice";
-import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosHome } from "react-icons/io";
-import { LuUsers } from "react-icons/lu";
 import { HiUsers } from "react-icons/hi";
 import { AiFillProduct } from "react-icons/ai";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const closeMenu = () => setIsMenuOpen(false);
   const dispatch = useDispatch();
 
-  const profileMenuItems = [
+  const adminProfileMenuItems = [
     {
       label: "My Profile",
       icon: UserCircleIcon,
       onclick: () => {
         console.log("My Profile Clicked");
+        navigate("/profile");
       },
     },
     {
-      label: "Edit Profile",
+      label: "Dashboard",
       icon: Cog6ToothIcon,
-      onclick: () => {},
-    },
-    {
-      label: "Inbox",
-      icon: InboxArrowDownIcon,
-      onclick: () => {},
-    },
-    {
-      label: "Help",
-      icon: LifebuoyIcon,
-      onclick: () => {},
+      onclick: () => {
+        navigate("/admin");
+      },
     },
     {
       label: "Sign Out",
       icon: PowerIcon,
       onclick: () => {
-        console.log("click in logout");
         dispatch(logout());
+        navigate("/");
         closeMenu();
       },
     },
@@ -75,7 +68,7 @@ function ProfileMenu() {
         <Button
           variant="text"
           color="blue-gray"
-          className="flex items-center rounded-full py-0.5 pr-2 pl-0.5  dark:text-gray-200"
+          className="flex items-center rounded-full py-0.5 pr-0 pl-0.5  dark:text-gray-200"
         >
           <Avatar
             variant="circular"
@@ -86,9 +79,10 @@ function ProfileMenu() {
           />
         </Button>
       </MenuHandler>
+
       <MenuList className="p-1 dark:bg-gray-800">
-        {profileMenuItems.map(({ label, icon, onclick }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
+        {adminProfileMenuItems.map(({ label, icon, onclick }, key) => {
+          const isLastItem = key === adminProfileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}

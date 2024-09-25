@@ -15,7 +15,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 const PWD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-export function Signup() {
+export function SignupPage() {
   const [inputData, setInputData] = useState({
     name: "",
     email: "",
@@ -82,13 +82,15 @@ export function Signup() {
   };
 
   return (
-    <Card color="transparent" shadow={false} className="flex items-center">
+    <Card color="transparent" shadow={false} className="flex items-center py-32">
       <Typography variant="h4" color="blue-gray" className="dark:text-gray-100">
         Sign Up
       </Typography>
+
       <Typography color="gray" className="mt-1 font-normal dark:text-gray-300">
         Nice to meet you! Enter your details to register.
       </Typography>
+
       <form
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={handleSubmit}

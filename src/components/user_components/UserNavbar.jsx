@@ -13,8 +13,6 @@ import {
 import {
   UserCircleIcon,
   Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
   PowerIcon,
   Bars2Icon,
 } from "@heroicons/react/24/solid";
@@ -33,42 +31,59 @@ function ProfileMenu() {
 
   const closeMenu = () => setIsMenuOpen(false);
   const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.users);
 
-  const profileMenuItems = [
+  const userProfileMenuItems = [
     {
       label: "My Profile",
       icon: UserCircleIcon,
       onclick: () => {
         console.log("My Profile Clicked");
+        navigate("/profile");
       },
     },
+
     {
-      label: "Edit Profile",
-      icon: Cog6ToothIcon,
+      label: "Sign Out",
+      icon: PowerIcon,
       onclick: () => {
+        dispatch(logout());
+        navigate("/");
+        closeMenu();
+      },
+    },
+  ];
+  const adminProfileMenuItems = [
+    {
+      label: "My Profile",
+      icon: UserCircleIcon,
+      onclick: () => {
+        console.log("My Profile Clicked");
         navigate("/profile");
       },
     },
     {
-      label: "Inbox",
-      icon: InboxArrowDownIcon,
-      onclick: () => {},
-    },
-    {
-      label: "Help",
-      icon: LifebuoyIcon,
-      onclick: () => {},
+      label: "Dashboard",
+      icon: Cog6ToothIcon,
+      onclick: () => {
+        navigate("admin");
+      },
     },
     {
       label: "Sign Out",
       icon: PowerIcon,
       onclick: () => {
-        console.log("click in logout");
         dispatch(logout());
+        navigate("/");
         closeMenu();
       },
     },
   ];
+
+  const profileMenuItems =
+    currentUser?.role === "admin"
+      ? adminProfileMenuItems
+      : userProfileMenuItems;
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -76,7 +91,7 @@ function ProfileMenu() {
         <Button
           variant="text"
           color="blue-gray"
-          className="flex items-center rounded-full py-0.5 pr-2 pl-0.5  dark:text-gray-200"
+          className="flex items-center rounded-full py-0.5 pr-0 pl-0.5  dark:text-gray-200"
         >
           <Avatar
             variant="circular"
@@ -87,6 +102,7 @@ function ProfileMenu() {
           />
         </Button>
       </MenuHandler>
+
       <MenuList className="p-1 dark:bg-gray-800">
         {profileMenuItems.map(({ label, icon, onclick }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;

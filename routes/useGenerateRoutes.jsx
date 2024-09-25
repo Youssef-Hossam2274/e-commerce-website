@@ -1,14 +1,14 @@
 import { Outlet, useRoutes } from "react-router-dom";
 import UserLayout from "../src/layouts/UserLayout";
 import AdminLayout from "../src/layouts/AdminLayout";
-import { Login } from "../src/pages/Login";
-import { Signup } from "../src/pages/Signup";
+import { SignupPage } from "../src/pages/SignupPage";
 import ProductsPage from "../src/pages/ProductsPage";
 import AdminUsersPage from "../src/pages/AdminUsersPage";
 import AdminProductsPage from "../src/pages/AdminProductsPage";
 import DashboardPage from "../src/pages/DashboardPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
+import { LoginPage } from "../src/pages/LoginPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -21,12 +21,16 @@ const useGenerateRoutes = () => {
       ),
       children: [
         {
+          index: true,
+          element: <Home />,
+        },
+        {
           path: "login",
-          element: <Login />,
+          element: <LoginPage />,
         },
         {
           path: "signup",
-          element: <Signup />,
+          element: <SignupPage />,
         },
         {
           path: "shop",
@@ -35,10 +39,6 @@ const useGenerateRoutes = () => {
         {
           path: "profile",
           element: <UserProfile />,
-        },
-        {
-          index: true,
-          element: <Home />,
         },
       ],
     },
