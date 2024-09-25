@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { AiFillBoxPlot } from "react-icons/ai";
 
 const initialState = {
   products: [],
@@ -31,6 +32,15 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async (initialProduct) => {
+    const { id } = initialProduct;
+    const response = await axios.put(`${PRODUCTS_ULR}/${id}`, initialProduct);
+    return response.data;
+  }
+);
+
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -50,6 +60,13 @@ export const productsSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         const id = action.payload;
         state.products = state.products.filter((product) => product.id !== id);
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const { id } = action.payload;
+        state.products = state.products.map((product) => {
+          if (product.id === id) product = action.payload;
+          return product;
+        });
       });
   },
 });

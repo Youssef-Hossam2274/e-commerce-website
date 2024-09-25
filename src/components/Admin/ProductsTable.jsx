@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { RemoveProductDialog } from "./RemoveProductDialog";
 import { ViewProductDialog } from "./ViewProductDialog";
+import { EditProductDialog } from "./EditProductDialog";
 
 const TABLE_HEAD = ["Transaction", "Amount", "View", "Edit", "Delete"];
 
@@ -79,10 +80,7 @@ export function ProductsTable() {
 
           <tbody>
             {filterdProduct?.map(
-              (
-                { id, imgUrl, name, price, description, rating },
-                index
-              ) => {
+              ({ id, imgUrl, name, price, description, rating }, index) => {
                 const isLast = index === products.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -126,9 +124,14 @@ export function ProductsTable() {
                       />
                     </td>
                     <td className={`${classes} `}>
-                      <Button className="dark:bg-gray-700 dark:text-white">
-                        Edit
-                      </Button>
+                      <EditProductDialog
+                        id={id}
+                        name={name}
+                        imgUrl={imgUrl}
+                        description={description}
+                        rate={rating.rate}
+                        price={price}
+                      />
                     </td>
                     <td className={`${classes} `}>
                       <RemoveProductDialog productName={name} productId={id} />
