@@ -16,6 +16,7 @@ import {
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { RemoveProductDialog } from "./RemoveProductDialog";
+import { ViewProductDialog } from "./ViewProductDialog";
 
 const TABLE_HEAD = ["Transaction", "Amount", "View", "Edit", "Delete"];
 
@@ -77,56 +78,65 @@ export function ProductsTable() {
           </thead>
 
           <tbody>
-            {filterdProduct?.map(({ id, imgUrl, name, price }, index) => {
-              const isLast = index === products.length - 1;
-              const classes = isLast
-                ? "p-4"
-                : "p-4 border-b border-gray-200 dark:border-gray-600";
+            {filterdProduct?.map(
+              (
+                { id, imgUrl, name, price, description, rating },
+                index
+              ) => {
+                const isLast = index === products.length - 1;
+                const classes = isLast
+                  ? "p-4"
+                  : "p-4 border-b border-gray-200 dark:border-gray-600";
 
-              return (
-                <tr key={id}>
-                  <td className={`${classes}`}>
-                    <div className="flex items-center gap-3">
-                      <Avatar
-                        src={imgUrl}
-                        alt={name}
-                        size="md"
-                        className="border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 object-cover p-1"
-                      />
+                return (
+                  <tr key={id}>
+                    <td className={`${classes}`}>
+                      <div className="flex items-center gap-3">
+                        <Avatar
+                          src={imgUrl}
+                          alt={name}
+                          size="md"
+                          className="border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 object-cover p-1"
+                        />
+                        <Typography
+                          variant="small"
+                          className="font-bold text-gray-800 dark:text-gray-100"
+                        >
+                          {name}
+                        </Typography>
+                      </div>
+                    </td>
+
+                    <td className={`${classes} `}>
                       <Typography
                         variant="small"
-                        className="font-bold text-gray-800 dark:text-gray-100"
+                        className="font-normal text-gray-800 dark:text-gray-100"
                       >
-                        {name}
+                        $ {price}
                       </Typography>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td className={`${classes} `}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-800 dark:text-gray-100"
-                    >
-                      $ {price}
-                    </Typography>
-                  </td>
-
-                  <td className={`${classes} `}>
-                    <Button className="dark:bg-gray-700 dark:text-white">
-                      View
-                    </Button>
-                  </td>
-                  <td className={`${classes} `}>
-                    <Button className="dark:bg-gray-700 dark:text-white">
-                      Edit
-                    </Button>
-                  </td>
-                  <td className={`${classes} `}>
-                    <RemoveProductDialog productName={name} productId={id} />
-                  </td>
-                </tr>
-              );
-            })}
+                    <td className={`${classes} `}>
+                      <ViewProductDialog
+                        name={name}
+                        imgUrl={imgUrl}
+                        price={price}
+                        description={description}
+                        rate={rating.rate}
+                      />
+                    </td>
+                    <td className={`${classes} `}>
+                      <Button className="dark:bg-gray-700 dark:text-white">
+                        Edit
+                      </Button>
+                    </td>
+                    <td className={`${classes} `}>
+                      <RemoveProductDialog productName={name} productId={id} />
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </CardBody>
