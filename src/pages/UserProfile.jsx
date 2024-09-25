@@ -60,7 +60,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="px-20">
+    <div className=" md:px-20">
       <div className="flex justify-center items-center">
         {updatedUser.gender == "male" ? (
           <img
@@ -76,7 +76,7 @@ const UserProfile = () => {
       </div>
 
       <div className="p-6 text-left px-16">
-        <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-green-500 mb-2">
+        <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-800 mb-2">
           <span>{updatedUser.name}</span>
         </h4>
         <p className="block antialiased font-sans text-base leading-relaxed bg-clip-text undefined text-mainWhite dark:text-white font-medium">
@@ -92,7 +92,7 @@ const UserProfile = () => {
         <div className="flex flex-col gap-4 ">
           <h6>Your User Name</h6>
           <Input
-            className="text-black bg-white "
+            className="text-black"
             name="name"
             disabled={disabled}
             value={updatedUser.name || ""}
@@ -131,10 +131,7 @@ const UserProfile = () => {
           />
         </div>
         <div className="flex justify-center items-center gap-4">
-          <Button
-            className="dark:bg-green-500 "
-            onClick={() => setDisabled(false)}
-          >
+          <Button className="bg-blue-800" onClick={() => setDisabled(false)}>
             Edit
           </Button>
           <Button color="red" onClick={confirmEdit}>
