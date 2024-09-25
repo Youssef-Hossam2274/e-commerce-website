@@ -4,7 +4,7 @@ import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/reducers/usersSlice";
-import RegistrationErrorMsg from "./RegistrationErrorMsg";
+import RegistrationErrorMsg from "../components/RegistrationErrorMsg";
 
 export function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
