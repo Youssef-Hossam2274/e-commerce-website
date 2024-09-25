@@ -1,7 +1,7 @@
 import React from "react";
-import StatsCard from "../components/StatsCard";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import StatsCard from "../components/Admin/StatsCard";
 
 export default function DashboardPage() {
   const navigate = useNavigate();

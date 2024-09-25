@@ -81,28 +81,6 @@
         "rate": 4.5,
         "count": 100
       }
-    },
-    {
-      "name": "New Air pods",
-      "description": "this an apple air pods",
-      "price": 90,
-      "imgUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1d",
-      "rating": {
-        "rate": 0,
-        "count": 0
-      },
-      "id": 4
-    },
-    {
-      "name": "new product",
-      "description": "this new product , this test product",
-      "price": "200",
-      "imgUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg",
-      "rating": {
-        "rate": "3",
-        "count": 0
-      },
-      "id": 5
     }
   ]
 }

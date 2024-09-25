@@ -15,6 +15,7 @@ import {
 } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { RemoveProductDialog } from "./RemoveProductDialog";
 
 const TABLE_HEAD = ["Transaction", "Amount", "View", "Edit", "Delete"];
 
@@ -121,9 +122,7 @@ export function ProductsTable() {
                     </Button>
                   </td>
                   <td className={`${classes} `}>
-                    <Button variant="outlined" className="text-white bg-red-900 border-none">
-                      Delete
-                    </Button>
+                    <RemoveProductDialog productName={name} productId={id} />
                   </td>
                 </tr>
               );

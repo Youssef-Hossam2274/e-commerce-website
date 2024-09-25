@@ -23,6 +23,14 @@ export const addProduct = createAsyncThunk(
   }
 );
 
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async (productId) => {
+    const response = await axios.delete(`${PRODUCTS_ULR}/${productId}`);
+    return productId;
+  }
+);
+
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -38,6 +46,10 @@ export const productsSlice = createSlice({
       })
       .addCase(addProduct.fulfilled, (state, action) => {
         state.products.push(action.payload);
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        const id = action.payload;
+        state.products = state.products.filter((product) => product.id !== id);
       });
   },
 });

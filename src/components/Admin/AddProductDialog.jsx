@@ -13,8 +13,8 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/reducers/productsSlice";
-import RegistrationErrorMsg from "./RegistrationErrorMsg";
+import { addProduct } from "../../../redux/reducers/productsSlice";
+import RegistrationErrorMsg from "../RegistrationErrorMsg";
 import { IoMdAdd } from "react-icons/io";
 
 export function AddProductDialog() {
@@ -82,7 +82,6 @@ export function AddProductDialog() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProduct(inputData));
-    console.log("formSubmit");
   };
 
   const disableBtn = () => {
