@@ -88,10 +88,11 @@ const UserProfile = () => {
         </p>
       </div>
       <hr />
-      <div className="p-[4rem] flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
+      <div className="p-[4rem] flex flex-col gap-8 text-black dark:text-white">
+        <div className="flex flex-col gap-4 ">
           <h6>Your User Name</h6>
           <Input
+            className="text-black bg-white "
             name="name"
             disabled={disabled}
             value={updatedUser.name || ""}
@@ -130,7 +131,12 @@ const UserProfile = () => {
           />
         </div>
         <div className="flex justify-center items-center gap-4">
-          <Button onClick={() => setDisabled(false)}>Edit</Button>
+          <Button
+            className="dark:bg-green-500 "
+            onClick={() => setDisabled(false)}
+          >
+            Edit
+          </Button>
           <Button color="red" onClick={confirmEdit}>
             Confirm Editing
           </Button>
