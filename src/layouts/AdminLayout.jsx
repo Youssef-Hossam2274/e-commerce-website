@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../components/admin/AdminNavbar";
 
 
 const AdminLayout = ({ children }) => {
@@ -15,11 +16,11 @@ const AdminLayout = ({ children }) => {
   }, [currentUser]);
   return (
     
-    <main>
-      <header>admin header</header>
+    <div>
+      <AdminNavbar />
       {children}
       <footer>admin footer</footer>
-    </main>
+    </div>
   );
 };
 
