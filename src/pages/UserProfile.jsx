@@ -4,12 +4,18 @@ import { fetchUser, updateUser } from "../../redux/reducers/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { current } from "@reduxjs/toolkit";
 import { Button, Input, Option, Select } from "@material-tailwind/react";
+import RegistrationErrorMsg from "../components/RegistrationErrorMsg";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state) => state.users);
+  const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+  const PWD_REGEX =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const { currentUser, users } = useSelector((state) => state.users);
+
   const [disabled, setDisabled] = useState(true);
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
@@ -19,6 +25,46 @@ const UserProfile = () => {
     id: "",
     role: "",
   });
+  const [errorMsg, setErrorMsg] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validation = () => {
+    setErrorMsg({ password: "", email: "" });
+
+    if (!EMAIL_REGEX.test(updatedUser.email)) {
+      setErrorMsg((prevError) => {
+        return {
+          ...prevError,
+          email: "Please enter a valid email address (e.g., name@example.com).",
+        };
+      });
+    }
+
+    if (!PWD_REGEX.test(updatedUser.password)) {
+      setErrorMsg((prevError) => {
+        return {
+          ...prevError,
+          password:
+            "Use at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character.",
+        };
+      });
+    }
+  };
+
+  const disableBtn = () => {
+    if (!updatedUser.name || !updatedUser.email || !updatedUser.password)
+      return true;
+
+    if (errorMsg.email || errorMsg.password) return true;
+
+    return false;
+  };
+
+  useEffect(() => {
+    validation();
+  }, [updatedUser]);
 
   useEffect(() => {
     if (currentUser) {
@@ -92,7 +138,7 @@ const UserProfile = () => {
         <div className="flex flex-col gap-4 ">
           <h6>Your User Name</h6>
           <Input
-            className="text-black"
+            className="text-black bg-white"
             name="name"
             disabled={disabled}
             value={updatedUser.name || ""}
@@ -102,15 +148,20 @@ const UserProfile = () => {
         <div className="flex flex-col gap-4">
           <h6>Your Email</h6>
           <Input
+            className="text-black bg-white"
             name="email"
             disabled={disabled}
             value={updatedUser.email || ""}
             onChange={handleInputChange}
           />
+          {updatedUser.email && errorMsg.email && (
+            <RegistrationErrorMsg msg={errorMsg.email} />
+          )}
         </div>
         <div className="flex flex-col gap-4">
           <h6>Your Gender</h6>
           <Select
+            className="text-black bg-white"
             disabled={disabled}
             name="gender"
             value={updatedUser.gender || ""}
@@ -123,18 +174,22 @@ const UserProfile = () => {
         <div className="flex flex-col gap-4">
           <h6>Your Password</h6>
           <Input
+            className="text-black bg-white"
             name="password"
             disabled={disabled}
             type="password"
             value={updatedUser.password || ""}
             onChange={handleInputChange}
           />
+          {updatedUser.password && errorMsg.password && (
+            <RegistrationErrorMsg msg={errorMsg.password} />
+          )}
         </div>
         <div className="flex justify-center items-center gap-4">
           <Button className="bg-blue-800" onClick={() => setDisabled(false)}>
             Edit
           </Button>
-          <Button color="red" onClick={confirmEdit}>
+          <Button color="red" onClick={confirmEdit} disabled={disableBtn()}>
             Confirm Editing
           </Button>
         </div>
