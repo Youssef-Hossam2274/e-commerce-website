@@ -58,7 +58,7 @@ export function ProductsTable() {
         </div>
       </CardHeader>
 
-      <CardBody className="px-0 overflow-hidden">
+      <CardBody className="px-0 overflow-x-scroll md:overflow-hidden">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr className="">

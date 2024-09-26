@@ -29,13 +29,13 @@ export function ProductCardView({ imgUrl, name, price, description, rate }) {
         <div className="mb-2 flex items-center justify-between">
           <Typography
             color="blue-gray"
-            className="font-medium dark:text-gray-200"
+            className="font-medium dark:text-gray-200 break-words max-w-[80%]"
           >
             {name}
           </Typography>
           <Typography
             color="blue-gray"
-            className="font-medium dark:text-gray-200"
+            className="font-medium dark:text-gray-200 w-fit"
           >
             $ {price}
           </Typography>
@@ -43,7 +43,7 @@ export function ProductCardView({ imgUrl, name, price, description, rate }) {
         <Typography
           variant="small"
           color="gray"
-          className="font-normal opacity-75 dark:text-gray-400"
+          className="font-normal opacity-75 dark:text-gray-400 w-full break-words"
         >
           {description}
         </Typography>
