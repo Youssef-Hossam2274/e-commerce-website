@@ -238,11 +238,16 @@ export function UserNavbar() {
             <Bars2Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
           </IconButton>
 
-          <Badge content={currentUser?.cart?.length}>
-            <IconButton variant="text" onClick={() => navigate("/shopping-cart")}>
-              <IoCart className=" text-2xl dark:text-white" />
-            </IconButton>
-          </Badge>
+          {logged && (
+            <Badge content={currentUser?.cart?.length}>
+              <IconButton
+                variant="text"
+                onClick={() => navigate("/shopping-cart")}
+              >
+                <IoCart className=" text-2xl dark:text-white" />
+              </IconButton>
+            </Badge>
+          )}
 
           <button onClick={toggleMode}>
             {mode === "light" ? <FaMoon /> : <MdOutlineWbSunny />}

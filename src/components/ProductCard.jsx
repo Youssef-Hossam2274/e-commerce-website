@@ -9,19 +9,38 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { IoIosStar } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { updateUser } from "../../redux/reducers/usersSlice";
 
 export function ProductCard({ productProps }) {
-  const { name, description, imgUrl, rating, price } = productProps;
+  const { id, name, description, imgUrl, rating, price } = productProps;
   const { rate } = rating;
   const [favoriteProduct, setFavoriteProduct] = useState("white");
-  const { logged } = useSelector((state) => state.users);
+  const { logged, currentUser } = useSelector((state) => state.users);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     if (!logged) {
       navigate("/login");
+    } else {
+      let isFound = false;
+      let newCart = currentUser.cart.map((productCart) => {
+        if (productCart.productId === id) {
+          isFound = true;
+          return { ...productCart, count: productCart.count + 1 };
+        }
+        return productCart;
+      });
+
+      if (!isFound) {
+        newCart.push({ productId: id, count: 1 });
+      }
+
+      const updatedUser = { ...currentUser, cart: newCart };
+
+      dispatch(updateUser(updatedUser));
     }
   };
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const initialState = {
   users: [],
@@ -49,7 +50,6 @@ export const usersSlice = createSlice({
       state.status = null;
       localStorage.removeItem("id");
     },
-    addToCart: (state, payload) => {},
   },
   extraReducers: (builder) => {
     builder
@@ -71,7 +71,6 @@ export const usersSlice = createSlice({
         state.status = "pending";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.currentUser = action.payload;
         state.users = state.users.map((user) => {
           if (user.id === action.payload.id) {
