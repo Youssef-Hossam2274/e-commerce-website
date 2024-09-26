@@ -1,20 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Card,
-  CardHeader,
-  IconButton,
-  Typography,
-  CardBody,
-  CardFooter,
-} from "@material-tailwind/react";
-import { useDispatch } from "react-redux";
-import { deleteProduct } from "../../../redux/reducers/productsSlice";
-import { IoIosStar } from "react-icons/io";
+import { Button, Dialog, DialogBody } from "@material-tailwind/react";
 import { ProductCardView } from "./ProductCardView";
 
 export function ViewProductDialog({ imgUrl, name, price, description, rate }) {

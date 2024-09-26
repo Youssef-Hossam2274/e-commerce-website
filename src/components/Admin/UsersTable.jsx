@@ -12,14 +12,24 @@ import { useState } from "react";
 import { RemoveProductDialog } from "./RemoveProductDialog";
 import { ViewProductDialog } from "./ViewProductDialog";
 import { EditProductDialog } from "./EditProductDialog";
+import femaleUserImg from "../../img/userProfile/female-user.png";
+import maleUserImg from "../../img/userProfile/male-user.png";
+import { EditUserDialog } from "./EditUserDialog";
 
-const TABLE_HEAD = ["Product Name", "Price", "View", "Edit", "Delete"];
+const TABLE_HEAD = [
+  "User Name",
+  "Role",
+  "View",
+  "Edit",
+  "Delete",
+  "Change Role",
+];
 
-export function ProductsTable() {
+export function UsersTable() {
   const [search, setSearch] = useState("");
-  const { products } = useSelector((state) => state.products);
-  const filterdProduct = products?.filter((product) => {
-    return product.name.toLowerCase().includes(search.toLowerCase());
+  const { users } = useSelector((state) => state.users);
+  const filterdUsers = users?.filter((user) => {
+    return user.name.toLowerCase().includes(search.toLowerCase());
   });
 
   return (
@@ -31,10 +41,10 @@ export function ProductsTable() {
               variant="h5"
               className="text-gray-900 dark:text-gray-100"
             >
-              Recent All Products
+              Recent All Users
             </Typography>
             <Typography className="mt-1 font-normal text-gray-600 dark:text-gray-400">
-              These are details about the last Products
+              These are details about the last Users
             </Typography>
           </div>
           <div className="flex w-full shrink-0 gap-2 md:w-max">
@@ -73,9 +83,9 @@ export function ProductsTable() {
           </thead>
 
           <tbody>
-            {filterdProduct?.map(
-              ({ id, imgUrl, name, price, description, rating }, index) => {
-                const isLast = index === products.length - 1;
+            {filterdUsers?.map(
+              ({ id, name, gender, email, password, role }, index) => {
+                const isLast = index === filterdUsers.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-gray-200 dark:border-gray-600";
@@ -85,7 +95,7 @@ export function ProductsTable() {
                     <td className={`${classes}`}>
                       <div className="flex items-center gap-3">
                         <Avatar
-                          src={imgUrl}
+                          src={gender === "male" ? maleUserImg : femaleUserImg}
                           alt={name}
                           size="md"
                           className="border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 object-cover p-1"
@@ -104,31 +114,26 @@ export function ProductsTable() {
                         variant="small"
                         className="font-normal text-gray-800 dark:text-gray-100"
                       >
-                        $ {price}
+                        {role}
                       </Typography>
                     </td>
 
+                    <td className={`${classes} `}>viewUser</td>
                     <td className={`${classes} `}>
-                      <ViewProductDialog
-                        name={name}
-                        imgUrl={imgUrl}
-                        price={price}
-                        description={description}
-                        rate={rating.rate}
-                      />
-                    </td>
-                    <td className={`${classes} `}>
-                      <EditProductDialog
+                      <EditUserDialog
                         id={id}
                         name={name}
-                        imgUrl={imgUrl}
-                        description={description}
-                        rate={rating.rate}
-                        price={price}
+                        email={email}
+                        password={password}
+                        gender={gender}
+                        role={role}
                       />
                     </td>
                     <td className={`${classes} `}>
                       <RemoveProductDialog productName={name} productId={id} />
+                    </td>
+                    <td className={`${classes} `}>
+                      Make it {role === "admin" ? "User" : "Admin"}
                     </td>
                   </tr>
                 );

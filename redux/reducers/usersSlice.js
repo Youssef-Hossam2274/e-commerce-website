@@ -25,7 +25,7 @@ export const updateUser = createAsyncThunk(
   "users/updateUser",
   async (initialUser) => {
     const { id } = initialUser;
-    const response = await axios.put(`${USERS_ULR}/${id}`, initialUser);
+    const response = await axios.patch(`${USERS_ULR}/${id}`, initialUser);
     return response.data;
   }
 );

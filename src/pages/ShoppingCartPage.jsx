@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import ProductShoppingCard from "../components/ProductShoppingCard";
-import Invoice from "../components/Invoice";
 import { updateUser } from "../../redux/reducers/usersSlice";
 import emptyCartImage from "../img/cart/undraw_empty_cart_co35.svg";
 import { Button, Typography } from "@material-tailwind/react";
+import Invoice from "../components/ShoppingCart/Invoice";
+import ProductShoppingCard from "../components/ShoppingCart/ProductShoppingCard";
 
 export default function ShoppingCartPage() {
   const { currentUser } = useSelector((state) => state.users);

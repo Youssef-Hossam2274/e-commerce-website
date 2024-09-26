@@ -9,14 +9,10 @@ import {
   DialogBody,
   DialogHeader,
   DialogFooter,
-  input,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import {
-  addProduct,
-  updateProduct,
-} from "../../../redux/reducers/productsSlice";
+import { updateProduct } from "../../../redux/reducers/productsSlice";
 import RegistrationErrorMsg from "../RegistrationErrorMsg";
 import { ProductCardView } from "./ProductCardView";
 

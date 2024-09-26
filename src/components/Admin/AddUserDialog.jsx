@@ -16,7 +16,7 @@ import { addProduct } from "../../../redux/reducers/productsSlice";
 import RegistrationErrorMsg from "../RegistrationErrorMsg";
 import { IoMdAdd } from "react-icons/io";
 
-export function AddProductDialog() {
+export function AddUserDialog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(!open);
   const dispatch = useDispatch();
@@ -112,7 +112,7 @@ export function AddProductDialog() {
         className="flex  items-center justify-center gap-2 bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 dark:bg-blue-gray-700 dark:text-gray-200 dark:hover:bg-blue-gray-600"
       >
         <IoMdAdd size="20" />
-        Add Product
+        Add New User
       </Button>
       <Dialog
         size="sm"
