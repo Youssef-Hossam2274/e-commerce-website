@@ -9,6 +9,7 @@ import DashboardPage from "../src/pages/DashboardPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
 import { LoginPage } from "../src/pages/LoginPage";
+import ShoppingCartPage from "../src/pages/ShoppingCartPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -39,6 +40,10 @@ const useGenerateRoutes = () => {
         {
           path: "profile",
           element: <UserProfile />,
+        },
+        {
+          path: "shopping-cart",
+          element: <ShoppingCartPage />,
         },
       ],
     },

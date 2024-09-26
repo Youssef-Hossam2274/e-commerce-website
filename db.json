@@ -5,7 +5,8 @@
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "123",
-      "role": "admin"
+      "role": "admin",
+      "cart": []
     },
     {
       "id": 1,
@@ -13,7 +14,8 @@
       "email": "y.hossam2274@gmail.com",
       "password": "1234",
       "gender": "male",
-      "role": "admin"
+      "role": "admin",
+      "cart": [2, 3]
     },
     {
       "name": "Youssef",

@@ -9,12 +9,14 @@ import {
   Avatar,
   IconButton,
   Collapse,
+  Badge,
 } from "@material-tailwind/react";
 import {
   UserCircleIcon,
   Cog6ToothIcon,
   PowerIcon,
   Bars2Icon,
+  HomeIcon,
 } from "@heroicons/react/24/solid";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
@@ -23,6 +25,7 @@ import { logout } from "../../../redux/reducers/usersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
+import { IoCart } from "react-icons/io5";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -181,6 +184,8 @@ export function UserNavbar() {
   const { logged } = useSelector((state) => state.users);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [mode, setMode] = useState(localStorage.getItem("theme") || "light");
+  const { currentUser } = useSelector((state) => state.users);
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("theme", mode);
@@ -232,6 +237,12 @@ export function UserNavbar() {
           >
             <Bars2Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
           </IconButton>
+
+          <Badge content={currentUser?.cart?.length}>
+            <IconButton variant="text" onClick={() => navigate("/shopping-cart")}>
+              <IoCart className=" text-2xl dark:text-white" />
+            </IconButton>
+          </Badge>
 
           <button onClick={toggleMode}>
             {mode === "light" ? <FaMoon /> : <MdOutlineWbSunny />}

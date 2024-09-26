@@ -49,6 +49,7 @@ export const usersSlice = createSlice({
       state.status = null;
       localStorage.removeItem("id");
     },
+    addToCart: (state, payload) => {},
   },
   extraReducers: (builder) => {
     builder
@@ -81,5 +82,5 @@ export const usersSlice = createSlice({
       });
   },
 });
-export const { logout } = usersSlice.actions;
+export const { logout, addToCart } = usersSlice.actions;
 export default usersSlice.reducer;
