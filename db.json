@@ -12,7 +12,6 @@
       "id": 1,
       "name": "Youssef Hossam",
       "email": "y.hossam2274@gmail.com",
-      "password": "1234",
       "gender": "male",
       "role": "admin",
       "cart": [2, 3]
