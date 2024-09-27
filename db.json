@@ -5,55 +5,23 @@
       "email": "admin@gmail.com",
       "password": "Admin@20@20",
       "gender": "female",
-      "id": "xzcfsda",
       "role": "admin",
+      "id": 1,
       "cart": []
     },
     {
-      "id": 1,
+      "id": "xzcfsda",
       "name": "Youssef Hossam",
       "email": "y.hossam2274@gmail.com",
-      "password": "123",
+      "password": "Youssef@20@20",
       "gender": "male",
-      "role": "admin",
+      "role": "user",
       "cart": [
         {
           "productId": 3,
           "count": 4
         }
       ]
-    },
-    {
-      "name": "Youssef",
-      "email": "youssef.hosman22@gmail.com",
-      "password": "Youssef@20@20",
-      "gender": "male",
-      "role": "user",
-      "id": 2
-    },
-    {
-      "name": "Youssef",
-      "email": "youssef.hosman22@gmail.comm",
-      "password": "Youssef@20@20",
-      "gender": "male",
-      "role": "user",
-      "id": 3
-    },
-    {
-      "name": "anas",
-      "email": "anas@gmail.com",
-      "password": "Anas@20@20",
-      "gender": "male",
-      "role": "user",
-      "id": 4
-    },
-    {
-      "name": "test",
-      "email": "test@gmail.com",
-      "password": "Test@20@20",
-      "gender": "male",
-      "role": "user",
-      "id": 5
     }
   ],
   "products": [

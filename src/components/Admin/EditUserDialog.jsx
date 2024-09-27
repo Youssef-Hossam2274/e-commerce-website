@@ -44,7 +44,7 @@ export function EditUserDialog({ id, name, email, password, gender, role }) {
     });
 
     const isFound = users.some(
-      (user) => user.email === inputData.email && user.id === currentUser?.id
+      (user) => user.email === inputData.email && user.email !== inputData.email
     );
     if (isFound) {
       setErrorMsg((prevError) => {

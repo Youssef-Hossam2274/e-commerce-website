@@ -1,4 +1,5 @@
 import { Typography } from "@material-tailwind/react";
+import footerImg from "../../img/mainAssets/footer-logo.png";
 
 const LINKS = [
   {
@@ -21,7 +22,7 @@ export function Footer() {
       <div className="mx-auto w-full px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <div>
-            <img src="./src/img/mainAssets/footer-logo.png" />
+            <img src={footerImg} />
           </div>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (

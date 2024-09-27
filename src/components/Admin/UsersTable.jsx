@@ -9,20 +9,19 @@ import {
 } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { RemoveProductDialog } from "./RemoveProductDialog";
-import { ViewProductDialog } from "./ViewProductDialog";
-import { EditProductDialog } from "./EditProductDialog";
 import femaleUserImg from "../../img/userProfile/female-user.png";
 import maleUserImg from "../../img/userProfile/male-user.png";
 import { EditUserDialog } from "./EditUserDialog";
+import { RemoveUserDialog } from "./RemoveUserDialog";
+import { ChangeRoleDialog } from "./ChangeRoleDialog";
 
 const TABLE_HEAD = [
   "User Name",
   "Role",
   "View",
   "Edit",
-  "Delete",
   "Change Role",
+  "Delete",
 ];
 
 export function UsersTable() {
@@ -130,10 +129,14 @@ export function UsersTable() {
                       />
                     </td>
                     <td className={`${classes} `}>
-                      <RemoveProductDialog productName={name} productId={id} />
+                      <ChangeRoleDialog
+                        UserName={name}
+                        role={role}
+                        userId={id}
+                      />
                     </td>
                     <td className={`${classes} `}>
-                      Make it {role === "admin" ? "User" : "Admin"}
+                      <RemoveUserDialog UserName={name} UserId={id} />
                     </td>
                   </tr>
                 );

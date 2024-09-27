@@ -3,72 +3,73 @@ import {
   Input,
   Button,
   Dialog,
-  Textarea,
   IconButton,
   Typography,
   DialogBody,
   DialogHeader,
   DialogFooter,
+  Select,
+  Option,
+  useSelect,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../../redux/reducers/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import RegistrationErrorMsg from "../RegistrationErrorMsg";
+import { addUser } from "../../../redux/reducers/usersSlice";
 import { IoMdAdd } from "react-icons/io";
+
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+const PWD_REGEX =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 export function AddUserDialog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(!open);
   const dispatch = useDispatch();
+  const { users, currentUser } = useSelector((state) => state.users);
   const [inputData, setInputData] = useState({
     name: "",
-    description: "",
-    price: 0,
-    imgUrl: "",
-    rating: {
-      rate: 0,
-      count: 0,
-    },
+    email: "",
+    password: "",
+    gender: "",
+    role: "",
   });
   const [errorMsg, setErrorMsg] = useState({
-    name: "",
-    description: "",
-    price: "",
-    imgUrl: "",
-    rate: "",
+    email: "",
+    password: "",
   });
 
   const validation = () => {
     setErrorMsg({
-      name: "",
-      description: "",
-      price: "",
-      imgUrl: "",
-      rate: "",
+      email: "",
+      password: "",
     });
 
-    if (!inputData.imgUrl.startsWith("https://")) {
+    const isFound = users.some(
+      (user) => user.email === inputData.email && user.email !== inputData.email
+    );
+    if (isFound) {
       setErrorMsg((prevError) => {
         return {
           ...prevError,
-          imgUrl: "Url should start with https://",
+          email: "this account is already exist. try to use another email",
+        };
+      });
+    } else if (!EMAIL_REGEX.test(inputData.email)) {
+      setErrorMsg((prevError) => {
+        return {
+          ...prevError,
+          email: "Please enter a valid email address (e.g., name@example.com).",
         };
       });
     }
 
-    if (inputData.rating.rate > 5 || inputData.rating.rate < 0) {
+    if (!PWD_REGEX.test(inputData.password)) {
       setErrorMsg((prevError) => {
         return {
           ...prevError,
-          rate: "Rate should between [0, 5]",
-        };
-      });
-    }
-    if (inputData.price < 0) {
-      setErrorMsg((prevError) => {
-        return {
-          ...prevError,
-          price: "Price should greater than zero",
+          password:
+            "Use at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character.",
         };
       });
     }
@@ -80,27 +81,14 @@ export function AddUserDialog() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(inputData));
+
+    dispatch(addUser(inputData));
   };
 
   const disableBtn = () => {
-    if (
-      !inputData.name ||
-      !inputData.description ||
-      !inputData.price ||
-      !inputData.rating ||
-      !inputData.imgUrl
-    )
-      return true;
+    if (!inputData.name || !inputData.email || !inputData.password) return true;
 
-    if (
-      errorMsg.name ||
-      errorMsg.description ||
-      errorMsg.imgUrl ||
-      errorMsg.price ||
-      errorMsg.rate
-    )
-      return true;
+    if (errorMsg.email || errorMsg.password) return true;
 
     return false;
   };
@@ -114,8 +102,9 @@ export function AddUserDialog() {
         <IoMdAdd size="20" />
         Add New User
       </Button>
+
       <Dialog
-        size="sm"
+        size="lg"
         open={open}
         handler={handleOpen}
         className="p-4 dark:bg-gray-800 dark:text-gray-100"
@@ -126,11 +115,13 @@ export function AddUserDialog() {
             color="blue-gray"
             className="dark:text-white"
           >
-            Add Product
+            Add User
           </Typography>
+
           <Typography className="mt-1 font-normal text-gray-600 dark:text-gray-400">
             Keep your records up-to-date and organized.
           </Typography>
+
           <IconButton
             size="sm"
             variant="text"
@@ -152,11 +143,11 @@ export function AddUserDialog() {
                 Name
               </Typography>
               <Input
+                className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
                 color="gray"
                 size="lg"
-                placeholder="eg. White Shoes"
+                placeholder="Enter your name"
                 name="name"
-                className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
                 containerProps={{
                   className: "!min-w-full",
                 }}
@@ -169,9 +160,6 @@ export function AddUserDialog() {
                   })
                 }
               />
-              {inputData.name && errorMsg.name && (
-                <RegistrationErrorMsg msg={errorMsg.name} />
-              )}
             </div>
 
             <div>
@@ -180,13 +168,13 @@ export function AddUserDialog() {
                 color="blue-gray"
                 className="mb-2 text-left font-medium dark:text-gray-200"
               >
-                Image
+                Email
               </Typography>
               <Input
                 color="gray"
                 size="lg"
-                placeholder="eg. https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg"
-                name="imgUrl"
+                placeholder="eg. example@gmail.com"
+                name="email"
                 className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
                 containerProps={{
                   className: "!min-w-full",
@@ -196,85 +184,13 @@ export function AddUserDialog() {
                 }}
                 onChange={(e) =>
                   setInputData((prevData) => {
-                    return { ...prevData, imgUrl: e.target.value };
+                    return { ...prevData, email: e.target.value };
                   })
                 }
               />
-              {inputData.imgUrl && errorMsg.imgUrl && (
-                <RegistrationErrorMsg msg={errorMsg.imgUrl} />
+              {inputData.email && errorMsg.email && (
+                <RegistrationErrorMsg msg={errorMsg.email} />
               )}
-            </div>
-
-            <div className="flex gap-4">
-              <div className="w-full">
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="mb-2 text-left font-medium dark:text-gray-200"
-                >
-                  Price
-                </Typography>
-                <Input
-                  color="gray"
-                  type="number"
-                  size="lg"
-                  placeholder="eg. 100"
-                  name="price"
-                  className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
-                  containerProps={{
-                    className: "!min-w-full",
-                  }}
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  onChange={(e) =>
-                    setInputData((prevData) => {
-                      return { ...prevData, price: e.target.value };
-                    })
-                  }
-                />
-                {inputData.price && errorMsg.price ? (
-                  <RegistrationErrorMsg msg={errorMsg.price} />
-                ) : (
-                  <></>
-                )}
-              </div>
-              <div className="w-full">
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="mb-2 text-left font-medium dark:text-gray-200"
-                >
-                  Rate
-                </Typography>
-                <Input
-                  type="number"
-                  color="gray"
-                  size="lg"
-                  placeholder="eg. 3.5"
-                  name="rate"
-                  className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
-                  containerProps={{
-                    className: "!min-w-full",
-                  }}
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  onChange={(e) =>
-                    setInputData((prevData) => {
-                      return {
-                        ...prevData,
-                        rating: { ...prevData.rating, rate: e.target.value },
-                      };
-                    })
-                  }
-                />
-                {inputData.rating.rate && errorMsg.rate ? (
-                  <RegistrationErrorMsg msg={errorMsg.rate} />
-                ) : (
-                  <></>
-                )}
-              </div>
             </div>
 
             <div>
@@ -283,25 +199,89 @@ export function AddUserDialog() {
                 color="blue-gray"
                 className="mb-2 text-left font-medium dark:text-gray-200"
               >
-                Description
+                Password
               </Typography>
-              <Textarea
-                rows={7}
-                placeholder="eg. This is a white shoe with a comfortable sole."
-                className="!w-full !border-[1.5px] !border-blue-gray-200/90 !border-t-blue-gray-200/90 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-100 ring-4 ring-transparent focus:!border-primary dark:focus:!border-gray-400 group-hover:!border-primary"
+              <Input
+                color="gray"
+                size="lg"
+                placeholder="eg. Aabc123@"
+                name="email"
+                className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+                containerProps={{
+                  className: "!min-w-full",
+                }}
                 labelProps={{
                   className: "hidden",
                 }}
                 onChange={(e) =>
                   setInputData((prevData) => {
-                    return { ...prevData, description: e.target.value };
+                    return { ...prevData, password: e.target.value };
                   })
                 }
               />
-              {inputData.description && errorMsg.description && (
-                <RegistrationErrorMsg msg={errorMsg.description} />
+              {inputData.password && errorMsg.password && (
+                <RegistrationErrorMsg msg={errorMsg.password} />
               )}
             </div>
+
+            <div>
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="mb-2 text-left font-medium dark:text-gray-200"
+              >
+                gender
+              </Typography>
+              <Select
+                className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+                name="gender"
+                value={inputData.gender}
+                containerProps={{
+                  className: "!min-w-full",
+                }}
+                labelProps={{
+                  className: "hidden",
+                }}
+                onChange={(value) =>
+                  setInputData((prevData) => {
+                    return { ...prevData, gender: value };
+                  })
+                }
+              >
+                <Option value="male">Male</Option>
+                <Option value="female">Female</Option>
+              </Select>
+            </div>
+
+            <div>
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="mb-2 text-left font-medium dark:text-gray-200"
+              >
+                Role
+              </Typography>
+              <Select
+                className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+                name="role"
+                value={inputData.role}
+                containerProps={{
+                  className: "!min-w-full",
+                }}
+                labelProps={{
+                  className: "hidden",
+                }}
+                onChange={(value) =>
+                  setInputData((prevData) => {
+                    return { ...prevData, role: value };
+                  })
+                }
+              >
+                <Option value="admin">Admin</Option>
+                <Option value="user">User</Option>
+              </Select>
+            </div>
+
             <DialogFooter>
               <Button
                 disabled={disableBtn()}
@@ -309,7 +289,7 @@ export function AddUserDialog() {
                 className="ml-auto dark:bg-gray-700 dark:text-white"
                 onClick={handleOpen}
               >
-                Add Product
+                Add User
               </Button>
             </DialogFooter>
           </form>

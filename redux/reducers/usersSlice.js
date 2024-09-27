@@ -39,6 +39,14 @@ export const addUser = createAsyncThunk(
   }
 );
 
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (userId) => {
+    await axios.delete(`${USERS_ULR}/${userId}`);
+    return userId;
+  }
+);
+
 export const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -71,13 +79,16 @@ export const usersSlice = createSlice({
         state.status = "pending";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.currentUser = action.payload;
+        if (action.payload.id === state.id) state.currentUser = action.payload;
         state.users = state.users.map((user) => {
           if (user.id === action.payload.id) {
             user = action.payload;
           }
           return user;
         });
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.users = state.users.filter((user) => user.id !== action.payload);
       });
   },
 });
