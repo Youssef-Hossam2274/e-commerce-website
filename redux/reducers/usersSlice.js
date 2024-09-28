@@ -33,7 +33,7 @@ export const updateUser = createAsyncThunk(
 export const addUser = createAsyncThunk(
   "users/addUser",
   async (initialUser) => {
-    const newUser = { ...initialUser, role: "user" };
+    const newUser = { ...initialUser, role: "user", cart: [] };
     const response = await axios.post(USERS_ULR, newUser);
     return response.data;
   }

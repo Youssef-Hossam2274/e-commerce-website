@@ -21,6 +21,13 @@ export function LoginPage() {
   const navigate = useNavigate();
   const allUsers = useSelector((state) => state.users.users);
 
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    if (id) {
+      navigate("/");
+    }
+  }, []);
+
   const validation = () => {
     setErrorMsg({ password: "", email: "" });
 

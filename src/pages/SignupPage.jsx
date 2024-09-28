@@ -4,6 +4,8 @@ import {
   Checkbox,
   Button,
   Typography,
+  Select,
+  Option,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +22,7 @@ export function SignupPage() {
     name: "",
     email: "",
     password: "",
+    gender: "",
   });
   const [errorMsg, setErrorMsg] = useState({
     email: "",
@@ -28,8 +31,14 @@ export function SignupPage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const users = useSelector((state) => state.users.users);
+
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    if (id) {
+      navigate("/");
+    }
+  }, []);
 
   const validation = () => {
     setErrorMsg({ password: "", email: "" });
@@ -69,12 +78,17 @@ export function SignupPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addUser(inputData));
-    // add here any message for ensure that user register
     navigate("/login");
   };
 
   const disableBtn = () => {
-    if (!inputData.name || !inputData.email || !inputData.password) return true;
+    if (
+      !inputData.name ||
+      !inputData.email ||
+      !inputData.password ||
+      !inputData.gender
+    )
+      return true;
 
     if (errorMsg.email || errorMsg.password) return true;
 
@@ -82,7 +96,11 @@ export function SignupPage() {
   };
 
   return (
-    <Card color="transparent" shadow={false} className="flex items-center py-32">
+    <Card
+      color="transparent"
+      shadow={false}
+      className="flex items-center py-32"
+    >
       <Typography variant="h4" color="blue-gray" className="dark:text-gray-100">
         Sign Up
       </Typography>
@@ -145,6 +163,34 @@ export function SignupPage() {
 
           <section>
             <Typography
+              variant="small"
+              color="blue-gray"
+              className="mb-2 text-left font-medium dark:text-gray-200"
+            >
+              gender
+            </Typography>
+            <Select
+              className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+              name="gender"
+              containerProps={{
+                className: "!min-w-full",
+              }}
+              labelProps={{
+                className: "hidden",
+              }}
+              onChange={(value) =>
+                setInputData((prevData) => {
+                  return { ...prevData, gender: value };
+                })
+              }
+            >
+              <Option value="male">Male</Option>
+              <Option value="female">Female</Option>
+            </Select>
+          </section>
+
+          <section>
+            <Typography
               variant="h6"
               color="blue-gray"
               className="mb-2 dark:text-gray-200"
@@ -193,6 +239,7 @@ export function SignupPage() {
         >
           Sign Up
         </Button>
+
         <Typography
           color="gray"
           className="mt-4 text-center font-normal dark:text-gray-300"

@@ -25,7 +25,7 @@ import { logout } from "../../../redux/reducers/usersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
-import { IoCart } from "react-icons/io5";
+import { IoCart, IoLogIn } from "react-icons/io5";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,6 +158,7 @@ const navListItems = [
 ];
 
 function NavList() {
+  const { logged } = useSelector((state) => state.users);
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
       {navListItems.map(({ label, icon, to }) => (
@@ -176,6 +177,22 @@ function NavList() {
           </Typography>
         </Link>
       ))}
+      {!logged && (
+        <Link to="login" className="lg:hidden">
+          <Typography
+            variant="small"
+            color="gray"
+            className="font-medium text-blue-gray-500 dark:text-gray-400"
+          >
+            <MenuItem className="flex items-center gap-2 lg:rounded-full dark:hover:bg-gray-700">
+              {React.createElement(IoLogIn, {
+                className: "h-[18px] w-[18px] dark:text-gray-400",
+              })}{" "}
+              <span className="text-gray-900 dark:text-gray-200"> Login </span>
+            </MenuItem>
+          </Typography>
+        </Link>
+      )}
     </ul>
   );
 }
@@ -253,32 +270,32 @@ export function UserNavbar() {
             {mode === "light" ? <FaMoon /> : <MdOutlineWbSunny />}
           </button>
 
-          {!logged && (
-            <>
-              <Link to="/signup">
-                <Button
-                  size="sm"
-                  variant="text"
-                  className={`transition duration-300 ease-in-out rounded-md px-4 py-2 
-      bg-blue-500 text-white hover:bg-blue-600 
-      dark:bg-[#2563EB] dark:text-white dark:hover:bg-[#1D4ED8]`}
-                >
-                  <span>Sign Up</span>
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button
-                  size="sm"
-                  variant="text"
-                  className={`transition duration-300 ease-in-out rounded-md px-4 py-2 
+          <div className="hidden lg:flex md:gap-5">
+            {!logged && (
+              <>
+                <Link to="/signup">
+                  <Button
+                    size="sm"
+                    variant="text"
+                    className="transition duration-300 ease-in-out rounded-md px-4 py-2bg-blue-500 text-white hover:bg-blue-600 dark:bg-[#2563EB] dark:text-white dark:hover:bg-[#1D4ED8]"
+                  >
+                    <span>Sign Up</span>
+                  </Button>
+                </Link>
+                <Link to="/login">
+                  <Button
+                    size="sm"
+                    variant="text"
+                    className={` hidden md:block transition duration-300 ease-in-out rounded-md px-4 py-2 
       bg-gray-100 text-blue-500 hover:bg-gray-200 hover:text-blue-600
       dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white`}
-                >
-                  <span>Log In</span>
-                </Button>
-              </Link>
-            </>
-          )}
+                  >
+                    <span>Log In</span>
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
 
           {logged && <ProfileMenu />}
         </section>
