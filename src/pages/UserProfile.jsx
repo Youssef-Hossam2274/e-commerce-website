@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, updateUser } from "../../redux/reducers/usersSlice";
+import { updateUser } from "../../redux/reducers/usersSlice";
 import { useNavigate } from "react-router-dom";
-import { current } from "@reduxjs/toolkit";
 import { Button, Input, Option, Select } from "@material-tailwind/react";
 import RegistrationErrorMsg from "../components/RegistrationErrorMsg";
+import maleImg from "../img/userProfile/male-user.png";
+import femaleImg from "../img/userProfile/female-user.png";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -107,18 +108,11 @@ const UserProfile = () => {
 
   return (
     <div className=" md:px-20">
-      <div className="flex justify-center items-center">
-        {updatedUser.gender == "male" ? (
-          <img
-            src="../src/img/userProfile/male-user.png"
-            alt="male user icon"
-          />
-        ) : (
-          <img
-            src="../src/img/userProfile/female-user.png"
-            alt="female user icon"
-          />
-        )}
+      <div className="flex justify-center items-center mt-8">
+        <img
+          src={updatedUser.gender === "male" ? maleImg : femaleImg}
+          alt="profile img"
+        />
       </div>
 
       <div className="p-6 text-left px-16">

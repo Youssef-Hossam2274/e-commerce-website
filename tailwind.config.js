@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import heroBannerImg from "./src/img/hero/hero-1.png";
+
 const withMT = require("@material-tailwind/react/utils/withMT");
 export default withMT({
   darkMode: "class",

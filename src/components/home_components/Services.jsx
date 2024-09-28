@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import serviceImg1 from "../../img/hero2/banner-1.png";
+import serviceImg2 from "../../img/hero2/banner-2.png";
+import serviceImg3 from "../../img/hero2/banner-3.png";
 
 const Services = () => {
   return (
@@ -13,13 +16,13 @@ const Services = () => {
           </Link>
         </div>
         <div className=" flex justify-center items-center bg-blue-gray-50 dark:bg-gray-900 w-[250px] md:w-[400px]">
-          <img src="./src/img/hero2/banner-1.png" alt="" />
+          <img src={serviceImg1} alt="img 1" />
         </div>
       </div>
 
       <div className="w-full flex justify-center items-center gap-4 md:justify-evenly flex-col-reverse md:flex-row">
         <div className=" flex justify-center items-center bg-blue-gray-50 dark:bg-gray-900 w-[250px] md:w-[400px]">
-          <img src="./src/img/hero2/banner-2.png" alt="" />
+          <img src={serviceImg2} alt="img 2" />
         </div>
         <div className="text-[2rem] flex flex-col justify-center text-right  dark:text-white">
           <h1>Accessories</h1>
@@ -38,7 +41,7 @@ const Services = () => {
           </Link>
         </div>
         <div className=" flex justify-center items-center bg-blue-gray-50 dark:bg-gray-900 w-[250px] md:w-[400px]">
-          <img src="./src/img/hero2/banner-3.png" alt="" />
+          <img src={serviceImg3} alt="img 3" />
         </div>
       </div>
     </div>

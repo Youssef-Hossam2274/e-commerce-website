@@ -26,6 +26,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
 import { IoCart, IoLogIn } from "react-icons/io5";
+import lightLogo from "../../img/mainAssets/logo.png";
+import darkLogo from "../../img/mainAssets/footer-logo.png";
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -232,11 +234,7 @@ export function UserNavbar() {
             to="/"
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium text-gray-800 dark:text-gray-200"
           >
-            {mode === "light" ? (
-              <img src="../src/img/mainAssets/logo.png" />
-            ) : (
-              <img src="../src/img/mainAssets/footer-logo.png" />
-            )}
+            <img src={mode === "dark" ? darkLogo : lightLogo} alt="Logo img" />
           </Link>
 
           <div className="hidden lg:block">
@@ -277,7 +275,7 @@ export function UserNavbar() {
                   <Button
                     size="sm"
                     variant="text"
-                    className="transition duration-300 ease-in-out rounded-md px-4 py-2bg-blue-500 text-white hover:bg-blue-600 dark:bg-[#2563EB] dark:text-white dark:hover:bg-[#1D4ED8]"
+                    className="rounded-md px-4 py-2bg-blue-500 text-white bg-[#2563EB] hover:bg-[#2563EB]"
                   >
                     <span>Sign Up</span>
                   </Button>
