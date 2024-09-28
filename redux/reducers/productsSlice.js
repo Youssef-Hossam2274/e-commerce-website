@@ -6,7 +6,8 @@ const initialState = {
   products: [],
   status: "idle", // {idle, pending, success}
 };
-const PRODUCTS_ULR = "http://localhost:3000/products";
+// const PRODUCTS_ULR = "http://localhost:3000/products";
+const PRODUCTS_ULR = "https://ecommerce-endpoint.vercel.app/products";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProduct",

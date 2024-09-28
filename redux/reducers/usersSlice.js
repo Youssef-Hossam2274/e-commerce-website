@@ -9,7 +9,8 @@ const initialState = {
   currentUser: null,
   status: null, // {pending, success}
 };
-const USERS_ULR = "http://localhost:3000/users";
+// const USERS_ULR = "http://localhost:3000/users";
+const USERS_ULR = "https://ecommerce-endpoint.vercel.app/users";
 
 export const fetchUsers = createAsyncThunk("users/getUsers", async () => {
   const response = await axios.get(USERS_ULR);
