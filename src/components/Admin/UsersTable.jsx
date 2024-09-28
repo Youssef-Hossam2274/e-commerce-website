@@ -14,6 +14,7 @@ import maleUserImg from "../../img/userProfile/male-user.png";
 import { EditUserDialog } from "./EditUserDialog";
 import { RemoveUserDialog } from "./RemoveUserDialog";
 import { ChangeRoleDialog } from "./ChangeRoleDialog";
+import { ViewUserDialog } from "./ViewUserDialog";
 
 const TABLE_HEAD = [
   "User Name",
@@ -117,7 +118,15 @@ export function UsersTable() {
                       </Typography>
                     </td>
 
-                    <td className={`${classes} `}>viewUser</td>
+                    <td className={`${classes} `}>
+                      <ViewUserDialog
+                        name={name}
+                        email={email}
+                        password={password}
+                        gender={gender}
+                        role={role}
+                      />
+                    </td>
                     <td className={`${classes} `}>
                       <EditUserDialog
                         id={id}
