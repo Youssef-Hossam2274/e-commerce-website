@@ -227,7 +227,7 @@ export function UserNavbar() {
   }, []);
 
   return (
-    <nav className="p-2 lg:pl-6 dark:bg-gray-800">
+    <nav className="py-2 lg:px-6 dark:bg-gray-800">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900 dark:text-gray-200 py-3">
         <section className="flex">
           <Link
