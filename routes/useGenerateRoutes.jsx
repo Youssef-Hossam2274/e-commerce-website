@@ -6,6 +6,9 @@ import { Signup } from "../src/pages/Signup";
 import ProductsPage from "../src/pages/ProductsPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
+import Dashboard from "../src/components/admin/Dashboard";
+import Products from "../src/pages/adminPages/Products";
+import Users from "../src/pages/adminPages/Users";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -49,12 +52,17 @@ const useGenerateRoutes = () => {
       children: [
         {
           path: "users",
-          element: <main>Users</main>
+          element: <Users />
+
+        },
+        {
+          path: "products",
+          element: <Products />
 
         },
         {
           index: true,
-          element: <h1>INDEX</h1>
+          element: <Dashboard />
         }
       ],
     },
