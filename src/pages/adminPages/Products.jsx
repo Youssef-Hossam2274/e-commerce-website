@@ -5,7 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import Popup from 'reactjs-popup';
+
 import {
   Card,
   CardHeader,
