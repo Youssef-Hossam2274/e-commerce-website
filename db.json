@@ -109,28 +109,6 @@
       }
     },
     {
-      "id": 7,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 8,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
       "id": 9,
       "name": "Apple AirPods",
       "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
@@ -153,26 +131,15 @@
       }
     },
     {
-      "id": 11,
-      "name": "Apple AirPods",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 90,
-      "imgUrl": "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80",
+      "name": "Essence Mascara Lash Princess",
+      "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+      "price": "15",
+      "imgUrl": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
       "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
-    },
-    {
-      "id": 12,
-      "name": "Camera Full HD",
-      "description": "With plenty of talk and listen time, voice-activated Siri access, and an available wireless charging case.",
-      "price": 200,
-      "imgUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1d",
-      "rating": {
-        "rate": 4.5,
-        "count": 100
-      }
+        "rate": "3",
+        "count": "10"
+      },
+      "id": 11
     }
   ]
 }
