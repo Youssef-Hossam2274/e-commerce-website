@@ -10,7 +10,7 @@ const AdminNavbar = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4 bg-[#526D82] ">
+      <Navbar className="mx-auto max-w-screen-3xl px-4 py-2 lg:px-8 lg:py-4 bg-black ">
       <div className="container mx-auto flex flex-wrap items-center justify-between text-white">
         <Typography
           as="p"

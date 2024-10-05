@@ -22,7 +22,14 @@ export const addProduct = createAsyncThunk(
     return response.data;
   }
 );
-
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async (initialProduct) => {
+    const { id } = initialProduct;
+    const response = await axios.put(`${PRODUCTS_ULR}/${id}`, initialProduct);
+    return response.data;
+  }
+);
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (productId) => {

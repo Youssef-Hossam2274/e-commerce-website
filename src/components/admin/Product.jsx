@@ -8,19 +8,22 @@ import {
     Button,
     Dialog,
     DialogHeader,
-    DialogBody,
-    DialogFooter,
-    
+    DialogBody,    
   } from "@material-tailwind/react";
+  import { PencilIcon } from "@heroicons/react/24/solid";
+  import { MdOutlineViewInAr } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { deleteProduct } from '../../../redux/reducers/productsSlice';
 import { useDispatch} from 'react-redux';
 import { ProductCard } from '../ProductCard';
+import EditProduct from './EditProduct';
 const Product = ({product:{imgUrl, name, rating, price, id, description}, classes}) => {
     const {count, rate} = rating;
   const dispatch = useDispatch();
   const [view, setView] = useState(false);
+  const [edit, setEdit] = useState(false);
   const viewProd = ()=> setView(!view);
+  const editProd = ()=> setEdit(!edit);
   return (
     
     <tr>
@@ -77,20 +80,46 @@ const Product = ({product:{imgUrl, name, rating, price, id, description}, classe
         </td>
         
         <td className={classes}>
-            <Button onClick={viewProd}>View</Button>
+        <Tooltip content="View Product">
+                        <IconButton  onClick={viewProd} variant="text">
+                          <MdOutlineViewInAr className="h-6 w-6" />
+                        </IconButton>
+                      </Tooltip>
       <Dialog open={view} handler={viewProd}>
         <DialogHeader>{name}</DialogHeader>
         <DialogBody>
           <ProductCard productProps={{imgUrl, name, rating, price, id, description}}/>
         </DialogBody>
       </Dialog>
-            <Tooltip content="Delete Product">
+            
+      <Tooltip content="Edit Product">
+                        <IconButton onClick={editProd} variant="text">
+                          <PencilIcon className="h-4 w-4" />
+                        </IconButton>
+                      </Tooltip>
+
+                      <Dialog open={edit} handler={editProd}>
+        <DialogHeader>
+        <Avatar
+                src={imgUrl}
+                alt={name}
+                size="md"
+                className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
+            />
+            {name}
+            </DialogHeader>
+        <DialogBody>
+        
+          <EditProduct product={{imgUrl, name, rating, price, id, description}}/>
+        </DialogBody>
+      </Dialog>
+                      <Tooltip content="Delete Product">
             <IconButton variant="text" onClick={()=>{dispatch(deleteProduct(id));}}>
                 <MdDeleteForever className="h-6 w-6" />
             </IconButton>
-            </Tooltip>
-            
+            </Tooltip>    
         </td>
+        
     </tr>
   )
 }
