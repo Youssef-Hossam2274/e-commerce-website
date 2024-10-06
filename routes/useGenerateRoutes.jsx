@@ -6,10 +6,10 @@ import { Signup } from "../src/pages/Signup";
 import ProductsPage from "../src/pages/ProductsPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
-import Dashboard from "../src/components/admin/Dashboard";
-import Products from "../src/pages/adminPages/Products";
-import Users from "../src/pages/adminPages/Users";
 import Cart from "../src/pages/Cart";
+import AdminUsersPage from "../src/pages/Users";
+import AdminProductsPage from "../src/pages/AdminProductsPage";
+import DashboardPage from "../src/pages/DashboardPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -57,18 +57,16 @@ const useGenerateRoutes = () => {
       children: [
         {
           path: "users",
-          element: <Users />
-
+          element: <AdminUsersPage />,
         },
         {
           path: "products",
-          element: <Products />
-
+          element: <AdminProductsPage />,
         },
         {
           index: true,
-          element: <Dashboard />
-        }
+          element: <DashboardPage />,
+        },
       ],
     },
   ]);

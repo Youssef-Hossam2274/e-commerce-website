@@ -1,10 +1,7 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import Product from '../../components/admin/Product';
+import React from "react";
+import { useSelector } from "react-redux";
 import { IoMdAdd } from "react-icons/io";
-import {
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import {
   Card,
@@ -16,16 +13,15 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter,
 } from "@material-tailwind/react";
-import AddProduct from '../../components/admin/AddProduct';
+import Product from "../components/admin/Product";
+import AddProduct from "../components/admin/AddProduct";
 const TABLE_HEAD = ["Product", "Stock", "Price", "Rating", ""];
 
-const Products = () => {
-
-  const {products} = useSelector((store)=> store.products);
+const AdminProductsPage = () => {
+  const { products } = useSelector((store) => store.products);
   const [open, setOpen] = React.useState(false);
- 
+
   const handleOpen = () => setOpen(!open);
 
   return (
@@ -36,7 +32,6 @@ const Products = () => {
             <Typography variant="h5" color="blue-gray">
               Products
             </Typography>
-            
           </div>
           <div className="flex w-full shrink-0 gap-2 md:w-max">
             <div className="w-full md:w-72">
@@ -45,16 +40,20 @@ const Products = () => {
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               />
             </div>
-            <Button className="flex items-center gap-3" size="sm" onClick={handleOpen}>
-                Add Product
-                <IoMdAdd strokeWidth={2} className="h-4 w-4" />
+            <Button
+              className="flex items-center gap-3"
+              size="sm"
+              onClick={handleOpen}
+            >
+              Add Product
+              <IoMdAdd strokeWidth={2} className="h-4 w-4" />
             </Button>
-      <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>Add new Product!</DialogHeader>
-        <DialogBody>
-        <AddProduct />
-        </DialogBody>
-      </Dialog>
+            <Dialog open={open} handler={handleOpen}>
+              <DialogHeader>Add new Product!</DialogHeader>
+              <DialogBody>
+                <AddProduct />
+              </DialogBody>
+            </Dialog>
           </div>
         </div>
       </CardHeader>
@@ -79,27 +78,21 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map(
-              (
-                product,
-                index,
-              ) => {
-                const isLast = index === products.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
- 
-                return (
-                  <Product classes={classes} key={index} product={product} />
-                );
-              },
-            )}
+            {products.map((product, index) => {
+              const isLast = index === products.length - 1;
+              const classes = isLast
+                ? "p-4"
+                : "p-4 border-b border-blue-gray-50";
+
+              return (
+                <Product classes={classes} key={index} product={product} />
+              );
+            })}
           </tbody>
         </table>
       </CardBody>
-      
     </Card>
-  )
-}
+  );
+};
 
-export default Products;
+export default AdminProductsPage;

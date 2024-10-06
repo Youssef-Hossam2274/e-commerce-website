@@ -1,7 +1,7 @@
 import React from 'react'
 import { PencilIcon } from "@heroicons/react/24/solid";
 
-const Users = () => {
+const AdminUsersPage = () => {
   return (
     <div>
       Users
@@ -9,4 +9,4 @@ const Users = () => {
   )
 }
 
-export default Users;
+export default AdminUsersPage;
