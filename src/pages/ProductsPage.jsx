@@ -11,7 +11,7 @@ export default function ProductsPage() {
     if (status === "idle") dispatch(fetchProducts());
   }, [status]);
   return (
-    <main className="px-10 flex gap-7 flex-wrap justify-center">
+    <main className="px-10 py-24 flex gap-7 flex-wrap justify-center">
       {status === "success" &&
         products.map((product) => {
           return <ProductCard key={product.id} productProps={product} />;

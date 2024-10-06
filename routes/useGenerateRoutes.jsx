@@ -9,6 +9,7 @@ import Home from "../src/pages/Home";
 import Dashboard from "../src/components/admin/Dashboard";
 import Products from "../src/pages/adminPages/Products";
 import Users from "../src/pages/adminPages/Users";
+import Cart from "../src/pages/Cart";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -35,6 +36,10 @@ const useGenerateRoutes = () => {
         {
           path: "profile",
           element: <UserProfile />,
+        },
+        {
+          path: "shopping-cart",
+          element: <Cart />,
         },
         {
           path: "",
