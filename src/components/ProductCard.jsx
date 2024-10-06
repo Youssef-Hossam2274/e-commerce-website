@@ -11,6 +11,8 @@ import { useState } from "react";
 import { IoIosStar } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 export function ProductCard({ productProps }) {
   const { name, description, imgUrl, rating, price } = productProps;
@@ -22,8 +24,21 @@ export function ProductCard({ productProps }) {
   const handleAddToCart = () => {
     if (!logged) {
       navigate("/login");
+    } else {
+      // for the histpry
+      const newEntry = {
+        action: "Added to Cart",
+        productName: name,
+        date: new Date().toLocaleString(),
+      };
+  
+      const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+      userHistory.push(newEntry);
+      localStorage.setItem('userHistory', JSON.stringify(userHistory));
+  
     }
   };
+  
 
   return (
     <Card className="w-96 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">

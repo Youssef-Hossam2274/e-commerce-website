@@ -68,7 +68,19 @@ export function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //for history
+    const newEntry = {
+      action: "User Signed Up",
+      name: inputData.name,
+      email: inputData.email,
+      date: new Date().toLocaleString(),
+    };
+  
+    const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+    userHistory.push(newEntry);
+    localStorage.setItem('userHistory', JSON.stringify(userHistory));
     dispatch(addUser(inputData));
+
     // add here any message for ensure that user register
     navigate("/login");
   };
