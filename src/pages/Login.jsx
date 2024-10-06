@@ -21,6 +21,13 @@ export function Login() {
   const navigate = useNavigate();
   const allUsers = useSelector((state) => state.users.users);
 
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    if (id) {
+      navigate("/");
+    }
+  }, []);
+
   const validation = () => {
     setErrorMsg({ password: "", email: "" });
 
@@ -68,7 +75,7 @@ export function Login() {
     return false;
   };
   return (
-    <section className="grid text-center items-center dark:text-gray-100">
+    <section className="grid text-center items-center dark:text-gray-100 py-32">
       <div>
         <Typography
           variant="h3"
