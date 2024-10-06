@@ -14,7 +14,7 @@ const UserProfile = () => {
   const PWD_REGEX =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  const { currentUser, users } = useSelector((state) => state.users);
+  const { currentUser } = useSelector((state) => state.users);
 
   const [disabled, setDisabled] = useState(true);
   const [updatedUser, setUpdatedUser] = useState({
@@ -24,6 +24,7 @@ const UserProfile = () => {
     password: "",
     id: "",
     role: "",
+    cart: [],
   });
   const [errorMsg, setErrorMsg] = useState({
     email: "",
@@ -75,6 +76,7 @@ const UserProfile = () => {
         password: currentUser.password || "",
         id: currentUser.id || "",
         role: currentUser.role || "",
+        cart: currentUser.cart || "",
       });
     }
   }, [currentUser]);

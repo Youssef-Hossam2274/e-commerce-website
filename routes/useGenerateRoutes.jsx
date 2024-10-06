@@ -6,6 +6,7 @@ import { Signup } from "../src/pages/Signup";
 import ProductsPage from "../src/pages/ProductsPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
+import Cart from "../src/pages/Cart";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -32,6 +33,10 @@ const useGenerateRoutes = () => {
         {
           path: "profile",
           element: <UserProfile />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
         {
           path: "",

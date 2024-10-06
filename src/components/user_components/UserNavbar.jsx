@@ -9,6 +9,7 @@ import {
   Avatar,
   IconButton,
   Collapse,
+  Badge,
 } from "@material-tailwind/react";
 import {
   UserCircleIcon,
@@ -162,9 +163,10 @@ function NavList() {
 }
 
 export function UserNavbar() {
-  const { logged } = useSelector((state) => state.users);
+  const { logged, currentUser } = useSelector((state) => state.users);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [mode, setMode] = useState(localStorage.getItem("theme") || "light");
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("theme", mode);
@@ -216,6 +218,20 @@ export function UserNavbar() {
           >
             <Bars2Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
           </IconButton>
+
+          <Badge
+            content={new Set(currentUser?.cart).size}
+            className="h-5 w-5 p-0 flex items-center justify-center rounded-full"
+          >
+            <Button
+              size="lg"
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              <FaShoppingCart className="text-[17px]" />
+            </Button>
+          </Badge>
 
           <button onClick={toggleMode}>
             {mode === "light" ? <FaMoon /> : <MdOutlineWbSunny />}
