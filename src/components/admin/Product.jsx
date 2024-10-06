@@ -25,8 +25,10 @@ const Product = ({
   const dispatch = useDispatch();
   const [view, setView] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [del, setDel] = useState(false);
   const viewProd = () => setView(!view);
   const editProd = () => setEdit(!edit);
+  const delProd = ()=> setDel(!del);
   return (
     <tr>
       <td className={classes}>
@@ -103,10 +105,20 @@ const Product = ({
         <Tooltip content="Delete Product">
           <IconButton
             variant="text"
-            onClick={() => {
-              dispatch(deleteProduct(id));
-            }}
+            onClick={delProd}
           >
+            <Dialog className="text-center" open={del} handler={delProd}>
+          <DialogHeader>Delete Product : {name}</DialogHeader>
+          <DialogBody>
+          <Button variant="gradient" color="green" onClick={()=>{
+            dispatch(deleteProduct(id));
+            delProd();
+
+          }}>
+            <span>Confirm</span>
+          </Button>
+          </DialogBody>
+        </Dialog>
             <MdDeleteForever className="h-6 w-6" />
           </IconButton>
         </Tooltip>

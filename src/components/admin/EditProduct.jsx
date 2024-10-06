@@ -16,7 +16,7 @@ const EditProduct = ({product}) => {
     
     const handleProduct = (e)=>{
         e.preventDefault();
-        const {name, imgUrl, rating:{rate, count}} = newProduct;
+        const {name, imgUrl} = newProduct;
         if(name == "")
         {            
             setAdded({isAdded: false, message: "Product name cannot be Empty"});

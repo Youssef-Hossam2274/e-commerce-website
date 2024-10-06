@@ -7,7 +7,7 @@ import ProductsPage from "../src/pages/ProductsPage";
 import UserProfile from "../src/pages/UserProfile";
 import Home from "../src/pages/Home";
 import Cart from "../src/pages/Cart";
-import AdminUsersPage from "../src/pages/Users";
+import AdminUsersPage from "../src/pages/AdminUsersPage";
 import AdminProductsPage from "../src/pages/AdminProductsPage";
 import DashboardPage from "../src/pages/DashboardPage";
 
