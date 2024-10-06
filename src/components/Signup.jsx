@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../redux/reducers/usersSlice";
 import RegistrationErrorMsg from "./RegistrationErrorMsg";
+import { useNavigate } from "react-router-dom";
+
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 const PWD_REGEX =
