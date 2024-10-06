@@ -35,7 +35,7 @@ const useGenerateRoutes = () => {
           element: <UserProfile />,
         },
         {
-          path: "cart",
+          path: "shopping-cart",
           element: <Cart />,
         },
         {
