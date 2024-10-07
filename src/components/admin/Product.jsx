@@ -71,7 +71,7 @@ const Product = ({
             <MdOutlineViewInAr className="h-6 w-6" />
           </IconButton>
         </Tooltip>
-        <Dialog open={view} handler={viewProd}>
+        <Dialog className="dark:bg-gray-700 dark:text-gray-200" open={view} handler={viewProd}>
           <DialogHeader>{name}</DialogHeader>
           <DialogBody>
             <ProductCard
@@ -86,7 +86,7 @@ const Product = ({
           </IconButton>
         </Tooltip>
 
-        <Dialog open={edit} handler={editProd}>
+        <Dialog className="dark:bg-gray-700 dark:text-gray-200" open={edit} handler={editProd}>
           <DialogHeader>
             <Avatar
               src={imgUrl}
@@ -107,9 +107,17 @@ const Product = ({
             variant="text"
             onClick={delProd}
           >
-            <Dialog className="text-center" open={del} handler={delProd}>
+            <Dialog className="dark:bg-gray-700 dark:text-gray-200 text-center" open={del} handler={delProd}>
           <DialogHeader>Delete Product : {name}</DialogHeader>
           <DialogBody>
+          <Button
+            variant="text"
+            color="red"
+            onClick={() => delProd(null)}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
           <Button variant="gradient" color="green" onClick={()=>{
             dispatch(deleteProduct(id));
             delProd();

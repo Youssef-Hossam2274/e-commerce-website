@@ -32,9 +32,9 @@ const AdminUsersPage = () => {
     return admins.length;
   }
   return (
-    <Card className="h-full w-full">
+    <Card className="dark:bg-gray-700 dark:text-gray-200 h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
+        <div className="dark:bg-gray-700 dark:text-gray-200 flex flex-col justify-between gap-8 md:flex-row md:items-center">
           <div>
             <Typography variant="h5" color="blue-gray">
               Users
@@ -42,17 +42,12 @@ const AdminUsersPage = () => {
             
           </div>
           <div className="flex w-full shrink-0 gap-2 md:w-max">
-            <div className="w-full md:w-72">
-              <Input
-                label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-              />
-            </div>
+            
             <Button className="flex items-center gap-3" size="sm" onClick={handleOpen}>
                 Add User
                 <IoMdAdd strokeWidth={2} className="h-4 w-4" />
             </Button>
-      <Dialog open={open} handler={handleOpen}>
+      <Dialog className="dark:bg-gray-700 dark:text-gray-200" open={open} handler={handleOpen}>
         <DialogHeader>Add new User!</DialogHeader>
         <DialogBody>
         <AddUser />

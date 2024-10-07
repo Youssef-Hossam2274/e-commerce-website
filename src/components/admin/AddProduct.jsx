@@ -22,14 +22,23 @@ const AddProduct = () => {
     
     const handleProduct = (e)=>{
         e.preventDefault();
-        const {name, imgUrl, rating:{rate, count}} = newProduct;
+        const {name, price, imgUrl, rating:{rate}} = newProduct;
         if(name == "")
         {            
             setAdded({isAdded: false, message: "Product name cannot be Empty"});
         }
+        else if(isNaN(price) || price < 0)
+        {            
+            setAdded({isAdded: false, message: "Price should be a positive number"});
+
+        }
+        else if(isNaN(rate) || rate < 0 || rate > 5)
+        {            
+            setAdded({isAdded: false, message: "Rate should be a positive number between 0, 5"});
+
+        }
         else if(!(imgUrl.startsWith("http")))
         {            
-          console.log(imgUrl)
             setAdded({isAdded: false, message: "Image Url is invalid or invalid Formate"});
 
         }
@@ -45,10 +54,10 @@ const AddProduct = () => {
         
     };
   return (
-    <form onSubmit={(e)=>{handleProduct(e)}} className='bg-white w-96'>
+    <form onSubmit={(e)=>{handleProduct(e)}} className='bg-white w-96 dark:bg-gray-700 dark:text-gray-200'>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-        <div className='text-red-600'>{added.message}</div>
+        <div className={added.isAdded? "text-amber-800": "text-red-600"}>{added.message}</div>
         <div className='flex'>
 
         </div>
@@ -64,8 +73,7 @@ const AddProduct = () => {
             <Input 
             label="Price" 
             value={newProduct.price} 
-            min={0}
-            type='number'
+            
             onChange={(e)=>setNewProduct({...newProduct, price:e.target.value})}
 />
             </div>
@@ -73,9 +81,6 @@ const AddProduct = () => {
             <Input 
             label="Rate" 
             value={newProduct.rating.rate} 
-            type='number'
-            min={0}
-            max={5}
             onChange={(e)=>setNewProduct({...newProduct, rating:{...newProduct.rating, rate:e.target.value}})}
 />
             </div>
@@ -100,7 +105,7 @@ const AddProduct = () => {
                   id="description"
                   name="description"
                   rows={3}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="dark:bg-gray-700 dark:text-gray-200 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>

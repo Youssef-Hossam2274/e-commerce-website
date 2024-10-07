@@ -52,7 +52,7 @@ const EditUser = ({user}) => {
     };
   return (
     <div>
-      <form onSubmit={(e)=>{handleProduct(e)}} className='bg-white w-96'>
+      <form  onSubmit={(e)=>{handleProduct(e)}} className='bg-white w-96 dark:bg-gray-700 dark:text-gray-200'>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
         <div className='text-red-600'>{edited.message}</div>

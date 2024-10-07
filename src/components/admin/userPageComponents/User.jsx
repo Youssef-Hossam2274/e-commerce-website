@@ -79,7 +79,7 @@ const User = ({user:{name, email, gender, id, role, password}, classes, getNumbe
                 }
               }
               >{role}</Button>
-              <Dialog className='text-center p-7' open={confirmAdmin} handler={makeAdmin}>
+              <Dialog className='dark:bg-gray-700 dark:text-gray-200 text-center p-7' open={confirmAdmin} handler={makeAdmin}>
                  <DialogHeader>Are you sure you want to make {name} Admin?</DialogHeader>
                  <Button
             variant="text"
@@ -111,7 +111,7 @@ const User = ({user:{name, email, gender, id, role, password}, classes, getNumbe
                         </IconButton>
                       </Tooltip>
 
-                      <Dialog open={edit} handler={editUser}>
+                      <Dialog className="dark:bg-gray-700 dark:text-gray-200" open={edit} handler={editUser}>
         <DialogHeader>
             <div>
             {name}
@@ -126,7 +126,7 @@ const User = ({user:{name, email, gender, id, role, password}, classes, getNumbe
             variant="text"
             onClick={delUser}
           >
-            <Dialog className="text-center" open={del} handler={delUser}>
+            <Dialog className="dark:bg-gray-700 dark:text-gray-200 text-center" open={del} handler={delUser}>
           <DialogHeader>Delete User : {name}</DialogHeader>
           <DialogBody>
           <Button
