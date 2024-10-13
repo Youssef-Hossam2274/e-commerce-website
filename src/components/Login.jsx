@@ -50,18 +50,21 @@ export function Login() {
       });
     }
   };
+
+  
 //for history
-  const handleLogin = (user) => {
-    const newEntry = {
+const handleLogin = (user) => {
+  const newEntry = {
       action: 'Logged In',
       userEmail: user.email,
       date: new Date().toLocaleString(),
-    };
-  
-    const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
-    userHistory.push(newEntry);
-    localStorage.setItem('userHistory', JSON.stringify(userHistory));
   };
+
+  const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+  userHistory.push(newEntry);
+  localStorage.setItem('userHistory', JSON.stringify(userHistory));
+};
+
   useEffect(() => {
     validation();
   }, [inputData]);
@@ -71,11 +74,21 @@ export function Login() {
     const userTryToLogin = allUsers.find(
       (user) => user.email === inputData.email
     );
-    const { id } = userTryToLogin;
-    dispatch(fetchUser(id));
-    localStorage.setItem("id", id);
-    navigate("/");
-  };
+    
+    if (userTryToLogin) {
+      const { id } = userTryToLogin;
+      
+  
+      dispatch(fetchUser(id));
+      localStorage.setItem("id", id);
+      
+      // Store login history in local storage
+      handleLogin(userTryToLogin); 
+      
+      navigate("/"); 
+    }
+};
+
 
   const disableBtn = () => {
     if (!inputData.email || !inputData.password) return true;
