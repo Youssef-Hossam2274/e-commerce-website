@@ -19,19 +19,19 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="relative py-7 w-full bg-gray-100 dark:bg-gray-900">
+    <footer className="relative py-7 w-full bg-gray-800">
       <div className="mx-auto w-full px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography variant="h5" className="mb-6 text-gray-800 dark:text-gray-300">
-            Material Tailwind
-          </Typography>
+          <div>
+            <img src="./src/img/mainAssets/footer-logo.png" />
+          </div>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="mb-3 font-medium text-gray-600 dark:text-gray-400"
+                  className="mb-3 font-medium text-gray-400"
                 >
                   {title}
                 </Typography>
@@ -41,7 +41,7 @@ export function Footer() {
                       as="a"
                       href="#"
                       color="gray"
-                      className="py-1.5 font-normal text-gray-700 hover:text-blue-500 transition-colors dark:text-gray-300 dark:hover:text-white"
+                      className="py-1.5 font-normal  transition-colors text-gray-300 hover:text-white"
                     >
                       {link}
                     </Typography>
@@ -51,18 +51,21 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-blue-gray-200 py-4 dark:border-gray-700 md:flex-row md:justify-between">
+        <div className="mt-12 flex w-full flex-col items-center justify-center border-t  py-4 border-gray-700 md:flex-row md:justify-between">
           <Typography
             variant="small"
-            className="mb-4 text-center font-normal text-gray-800 dark:text-gray-400 md:mb-0"
+            className="mb-4 text-center font-normal text-gray-400 md:mb-0"
           >
             &copy; {new Date().getFullYear()}{" "}
-            <a href="https://material-tailwind.com/" className="text-blue-500 hover:text-blue-600 dark:text-gray-300">
+            <a
+              href="https://material-tailwind.com/"
+              className=" hover:text-blue-600 text-gray-300"
+            >
               Youssef Hossam
             </a>
             . All Rights Reserved.
           </Typography>
-          <div className="flex gap-4 text-gray-700 dark:text-gray-400 sm:justify-center">
+          <div className="flex gap-4  text-gray-400 sm:justify-center">
             <Typography
               as="a"
               href="#"
@@ -119,4 +122,3 @@ export function Footer() {
     </footer>
   );
 }
-

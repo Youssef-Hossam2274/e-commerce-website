@@ -7,17 +7,42 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosStar } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateUser } from "../../redux/reducers/usersSlice";
 
 export function ProductCard({ productProps }) {
-  const { name, description, imgUrl, rating, price } = productProps;
+  const { name, description, imgUrl, rating, price, id } = productProps;
   const { rate } = rating;
   const [favoriteProduct, setFavoriteProduct] = useState("white");
-  const { logged } = useSelector((state) => state.users);
+  const { logged, currentUser } = useSelector((state) => state.users);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [updatedUser, setUpdatedUser] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    password: "",
+    id: "",
+    role: "",
+    cart: [],
+  });
+
+  useEffect(() => {
+    if (currentUser) {
+      setUpdatedUser({
+        name: currentUser.name || "",
+        email: currentUser.email || "",
+        gender: currentUser.gender || "",
+        password: currentUser.password || "",
+        id: currentUser.id || "",
+        role: currentUser.role || "",
+        cart: currentUser.cart || "",
+      });
+    }
+  }, [currentUser]);
 
   const handleAddToCart = () => {
     if (!logged) {
@@ -33,6 +58,20 @@ export function ProductCard({ productProps }) {
       const userHistory = JSON.parse(localStorage.getItem("userHistory")) || [];
       userHistory.push(newEntry);
       localStorage.setItem("userHistory", JSON.stringify(userHistory));
+
+      let cartCopy = [...updatedUser.cart];
+      cartCopy.push(id);
+
+      setUpdatedUser((prevState) => {
+        const newUser = {
+          ...prevState,
+          cart: cartCopy,
+        };
+
+        dispatch(updateUser(newUser));
+
+        return newUser;
+      });
     }
   };
 

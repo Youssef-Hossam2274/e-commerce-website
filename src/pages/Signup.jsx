@@ -4,12 +4,14 @@ import {
   Checkbox,
   Button,
   Typography,
+  Select,
+  Option,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../redux/reducers/usersSlice";
-import RegistrationErrorMsg from "./RegistrationErrorMsg";
+import RegistrationErrorMsg from "../components/RegistrationErrorMsg";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 const PWD_REGEX =
@@ -20,6 +22,7 @@ export function Signup() {
     name: "",
     email: "",
     password: "",
+    gender: "",
   });
   const [errorMsg, setErrorMsg] = useState({
     email: "",
@@ -28,8 +31,14 @@ export function Signup() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const users = useSelector((state) => state.users.users);
+
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    if (id) {
+      navigate("/");
+    }
+  }, []);
 
   const validation = () => {
     setErrorMsg({ password: "", email: "" });
@@ -86,7 +95,13 @@ export function Signup() {
   };
 
   const disableBtn = () => {
-    if (!inputData.name || !inputData.email || !inputData.password) return true;
+    if (
+      !inputData.name ||
+      !inputData.email ||
+      !inputData.password ||
+      !inputData.gender
+    )
+      return true;
 
     if (errorMsg.email || errorMsg.password) return true;
 
@@ -94,13 +109,19 @@ export function Signup() {
   };
 
   return (
-    <Card color="transparent" shadow={false} className="flex items-center">
+    <Card
+      color="transparent"
+      shadow={false}
+      className="flex items-center py-32"
+    >
       <Typography variant="h4" color="blue-gray" className="dark:text-gray-100">
         Sign Up
       </Typography>
+
       <Typography color="gray" className="mt-1 font-normal dark:text-gray-300">
         Nice to meet you! Enter your details to register.
       </Typography>
+
       <form
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={handleSubmit}
@@ -155,6 +176,34 @@ export function Signup() {
 
           <section>
             <Typography
+              variant="small"
+              color="blue-gray"
+              className="mb-2 text-left font-medium dark:text-gray-200"
+            >
+              gender
+            </Typography>
+            <Select
+              className="placeholder:opacity-100 focus:!border-t-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+              name="gender"
+              containerProps={{
+                className: "!min-w-full",
+              }}
+              labelProps={{
+                className: "hidden",
+              }}
+              onChange={(value) =>
+                setInputData((prevData) => {
+                  return { ...prevData, gender: value };
+                })
+              }
+            >
+              <Option value="male">Male</Option>
+              <Option value="female">Female</Option>
+            </Select>
+          </section>
+
+          <section>
+            <Typography
               variant="h6"
               color="blue-gray"
               className="mb-2 dark:text-gray-200"
@@ -203,6 +252,7 @@ export function Signup() {
         >
           Sign Up
         </Button>
+
         <Typography
           color="gray"
           className="mt-4 text-center font-normal dark:text-gray-300"
