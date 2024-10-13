@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../redux/reducers/usersSlice";
 import RegistrationErrorMsg from "./RegistrationErrorMsg";
-import { useNavigate } from "react-router-dom";
-
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 const PWD_REGEX =
@@ -77,10 +75,10 @@ export function Signup() {
       email: inputData.email,
       date: new Date().toLocaleString(),
     };
-  
-    const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+
+    const userHistory = JSON.parse(localStorage.getItem("userHistory")) || [];
     userHistory.push(newEntry);
-    localStorage.setItem('userHistory', JSON.stringify(userHistory));
+    localStorage.setItem("userHistory", JSON.stringify(userHistory));
     dispatch(addUser(inputData));
 
     // add here any message for ensure that user register

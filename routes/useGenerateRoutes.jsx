@@ -4,7 +4,7 @@ import AdminLayout from "../src/layouts/AdminLayout";
 import { Login } from "../src/components/Login";
 import { Signup } from "../src/components/Signup";
 import ProductsPage from "../src/pages/ProductsPage";
-import HistoryPage from "../src/pages/HistoryPage";
+import HistoryPage from "../src/components/HistoryPage";
 
 const useGenerateRoutes = () => {
   const routes = useRoutes([
@@ -39,7 +39,7 @@ const useGenerateRoutes = () => {
       ),
       children: [
         {
-          path: "history", 
+          path: "history",
           element: <HistoryPage />,
         },
       ],

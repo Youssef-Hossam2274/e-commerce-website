@@ -5,11 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/reducers/usersSlice";
 import RegistrationErrorMsg from "./RegistrationErrorMsg";
-import { useNavigate } from "react-router-dom";
-const navigate = useNavigate();
-
-
-
 
 export function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -51,19 +46,18 @@ export function Login() {
     }
   };
 
-  
-//for history
-const handleLogin = (user) => {
-  const newEntry = {
-      action: 'Logged In',
+  //for history
+  const handleLogin = (user) => {
+    const newEntry = {
+      action: "Logged In",
       userEmail: user.email,
       date: new Date().toLocaleString(),
-  };
+    };
 
-  const userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
-  userHistory.push(newEntry);
-  localStorage.setItem('userHistory', JSON.stringify(userHistory));
-};
+    const userHistory = JSON.parse(localStorage.getItem("userHistory")) || [];
+    userHistory.push(newEntry);
+    localStorage.setItem("userHistory", JSON.stringify(userHistory));
+  };
 
   useEffect(() => {
     validation();
@@ -74,21 +68,19 @@ const handleLogin = (user) => {
     const userTryToLogin = allUsers.find(
       (user) => user.email === inputData.email
     );
-    
+
     if (userTryToLogin) {
       const { id } = userTryToLogin;
-      
-  
+
       dispatch(fetchUser(id));
       localStorage.setItem("id", id);
-      
-      // Store login history in local storage
-      handleLogin(userTryToLogin); 
-      
-      navigate("/"); 
-    }
-};
 
+      // Store login history in local storage
+      handleLogin(userTryToLogin);
+
+      navigate("/");
+    }
+  };
 
   const disableBtn = () => {
     if (!inputData.email || !inputData.password) return true;
