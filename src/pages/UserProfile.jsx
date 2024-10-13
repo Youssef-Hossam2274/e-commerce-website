@@ -17,6 +17,7 @@ const UserProfile = () => {
   const { currentUser } = useSelector((state) => state.users);
 
   const [disabled, setDisabled] = useState(true);
+  const [userHistory, setUserHistory] = useState([]);
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
     email: "",
@@ -82,6 +83,8 @@ const UserProfile = () => {
   }, [currentUser]);
 
   useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("userHistory")) || [];
+    setUserHistory(history);
     const currentId = localStorage.id;
     currentId == null && navigate("/");
   }, []);
@@ -133,6 +136,12 @@ const UserProfile = () => {
         <p className="block antialiased font-sans text-base leading-relaxed bg-clip-text undefined text-mainWhite dark:text-white font-medium">
           My name is {updatedUser.name}, I'm a {updatedUser.gender} and I'm a
           member here.
+        </p>
+        <p className="block antialiased font-sans text-base leading-relaxed bg-clip-text undefined text-mainWhite dark:text-white font-medium">
+          Last Time Logged In:{" "}
+          {userHistory.find((entry) => entry.action == "Logged In")
+            ? userHistory.find((entry) => entry.action == "Logged In").date
+            : " NA "}
         </p>
       </div>
       <hr />
